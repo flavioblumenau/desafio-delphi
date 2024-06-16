@@ -1,7 +1,9 @@
 object frmPrincipal: TfrmPrincipal
   Left = 0
   Top = 0
-  Caption = 'Tipos de Produtos'
+  Caption = 
+    'Controle de Estoque ERP Fl'#225'vio da Silva - programadorflavio@hotm' +
+    'ail.com'
   ClientHeight = 424
   ClientWidth = 1184
   Color = clBtnFace
@@ -2612,9 +2614,6 @@ object frmPrincipal: TfrmPrincipal
       object MovimentacaoRelatorio1: TMenuItem
         Caption = 'Movimenta'#231#227'o de Estoque'
       end
-    end
-    object Sobre1: TMenuItem
-      Caption = 'Sobre'
     end
   end
 end

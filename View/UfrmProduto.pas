@@ -43,6 +43,10 @@ type
     qryPadraoID_CATEGORIA: TIntegerField;
     qryPadraoNOME: TStringField;
     BCategoria: TSpeedButton;
+    QryCategoria: TFDQuery;
+    dsCategoria: TDataSource;
+    QryCategoriaID: TIntegerField;
+    QryCategoriaNOME: TStringField;
     procedure btnNovoClick(Sender: TObject);
     procedure btnPesquisarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -52,6 +56,7 @@ type
     procedure BDeletarClick(Sender: TObject);
     procedure BEditarClick(Sender: TObject);
     procedure BNovoClick(Sender: TObject);
+    procedure qryPadraoAfterScroll(DataSet: TDataSet);
   private
     { Private declarations }
     procedure Searchs;
@@ -172,7 +177,9 @@ begin
     begin
      qryPadrao.Edit;
      qryPadraoID_CATEGORIA.AsInteger := Id;
-     qryPadraoNome.AsString := nomeCategoria;
+     QryCategoria.Close;
+     QryCategoria.ParamByName('Id').AsInteger := Id;
+     QryCategoria.Open;
     end;
   finally
     FreeAndNil(oLocaliza);
@@ -233,6 +240,14 @@ begin
   qryPadraoCADASTRO.AsDateTime := NOW;
 end;
 
+procedure TfrmProduto.qryPadraoAfterScroll(DataSet: TDataSet);
+begin
+  inherited;
+  QryCategoria.Close;
+  QryCategoria.ParamByName('Id').AsInteger := qryPadraoID_CATEGORIA.AsInteger;
+  QryCategoria.Open;
+end;
+
 procedure TfrmProduto.Inserts;
 var
   oProdutoController: TProdutoController;
@@ -272,11 +287,16 @@ begin
     begin
       with oProduto do
       begin
-        Id       := qryPadraoId.AsInteger;
-        Descricao:= qryPadraoDESCRICAO.Text;
+         Id            := qryPadraoId.AsInteger;
+        Descricao     := qryPadraoDESCRICAO.Text;
+        VlVenda       := qryPadraoVL_VENDA.AsFloat;
+        VlCusto       := qryPadraoVL_CUSTO.AsFloat;
+        Estoque       := qryPadraoESTOQUE.AsInteger;
+        Unidade       := qryPadraoUNIDADE.AsString;
+        Cadastro      := qryPadraoCADASTRO.AsDateTime;
 
       end;
-      if not Update(oProduto, sErro) then
+     if not oProdutoController.Update(oProduto, sErro) then
         raise Exception.Create(sErro);
     end;
   finally

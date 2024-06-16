@@ -9,10 +9,10 @@ uses
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   Vcl.Grids, Vcl.DBGrids, Vcl.DBCtrls, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
-  Vcl.Mask, uDM;
+  Vcl.Mask, uDM, Vcl.Imaging.jpeg;
 
 type
-  TfrmCompra = class(TfrmPadraoMovimento)
+  TfrmMovimentacao = class(TfrmPadraoMovimento)
     qryPadraoID_FORNECEDOR: TIntegerField;
     qryPadraoNOME: TStringField;
     qryPadraoID_FORMA_PGTO: TIntegerField;
@@ -23,19 +23,12 @@ type
     Label1: TLabel;
     edtIDCompra: TDBEdit;
     Label2: TLabel;
-    edtIDFornecedor: TDBEdit;
     Label3: TLabel;
-    edtIDFormaPgto: TDBEdit;
     Label4: TLabel;
     edtCadastro: TDBEdit;
     Label5: TLabel;
     edtNomeFornecedor: TDBEdit;
-    Label6: TLabel;
-    edtDescricao: TDBEdit;
-    Label7: TLabel;
-    edtUsuario: TDBEdit;
     Label8: TLabel;
-    edtValor: TDBEdit;
     qryPadraoItemID_SEQUENCIA: TIntegerField;
     qryPadraoItemID_COMPRA: TIntegerField;
     qryPadraoItemID_PRODUTO: TIntegerField;
@@ -57,6 +50,10 @@ type
     qryProduto: TFDQuery;
     qryPadraoItemDESCRICAO: TStringField;
     qryPadraoItemSUBTOTAL: TAggregateField;
+    edtIDFornecedor: TDBEdit;
+    Label7: TLabel;
+    DBEdit1: TDBEdit;
+    Image1: TImage;
     procedure btnNovoClick(Sender: TObject);
     procedure btnItemClick(Sender: TObject);
     procedure edtIDProdutoExit(Sender: TObject);
@@ -68,13 +65,13 @@ type
   end;
 
 var
-  frmCompra: TfrmCompra;
+  frmMovimentacao: TfrmMovimentacao;
 
 implementation
 
 {$R *.dfm}
 
-procedure TfrmCompra.btnItemClick(Sender: TObject);
+procedure TfrmMovimentacao.btnItemClick(Sender: TObject);
 var
   Proximo : Integer;
 begin
@@ -90,7 +87,7 @@ begin
   edtIDProduto.SetFocus;
 end;
 
-procedure TfrmCompra.btnNovoClick(Sender: TObject);
+procedure TfrmMovimentacao.btnNovoClick(Sender: TObject);
 begin
   inherited;
   edtCadastro.Text := DateToStr(Now);
@@ -100,7 +97,7 @@ begin
   edtIDFornecedor.SetFocus;
 end;
 
-procedure TfrmCompra.btnOkClick(Sender: TObject);
+procedure TfrmMovimentacao.btnOkClick(Sender: TObject);
 begin
   inherited;
   qryPadrao.Edit;
@@ -108,7 +105,7 @@ begin
   qryPadrao.Post;
 end;
 
-procedure TfrmCompra.edtIDProdutoExit(Sender: TObject);
+procedure TfrmMovimentacao.edtIDProdutoExit(Sender: TObject);
 begin
   inherited;
   if (qryPadraoItemID_PRODUTO.AsInteger > 0) then

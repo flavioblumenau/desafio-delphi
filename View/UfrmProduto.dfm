@@ -1,9 +1,10 @@
 inherited frmProduto: TfrmProduto
   Align = alClient
   Caption = 'Cadastro de Produto'
-  ClientHeight = 313
+  ClientHeight = 352
   StyleElements = [seFont, seClient, seBorder]
-  ExplicitHeight = 352
+  ExplicitLeft = -53
+  ExplicitHeight = 391
   TextHeight = 13
   object Label1: TLabel [0]
     Left = 160
@@ -97,7 +98,7 @@ inherited frmProduto: TfrmProduto
     FocusControl = edtCategoria
   end
   inherited imFundo: TImage
-    Height = 189
+    Height = 228
     ExplicitLeft = 0
     ExplicitTop = 69
     ExplicitWidth = 827
@@ -136,7 +137,7 @@ inherited frmProduto: TfrmProduto
     end
   end
   inherited Panel2: TPanel
-    Top = 256
+    Top = 295
     StyleElements = [seFont, seClient, seBorder]
     ExplicitTop = 256
     inherited DBNavigator1: TDBNavigator
@@ -220,6 +221,7 @@ inherited frmProduto: TfrmProduto
     Width = 89
     Height = 21
     CharCase = ecUpperCase
+    Color = clInfoBk
     DataField = 'ID_CATEGORIA'
     DataSource = dsPadrao
     TabOrder = 9
@@ -230,8 +232,10 @@ inherited frmProduto: TfrmProduto
     Width = 415
     Height = 21
     CharCase = ecUpperCase
+    Color = clInfoBk
     DataField = 'NOME'
-    DataSource = dsPadrao
+    DataSource = dsCategoria
+    ReadOnly = True
     TabOrder = 10
   end
   object cbUnidade: TDBComboBox [23]
@@ -252,6 +256,7 @@ inherited frmProduto: TfrmProduto
     TabOrder = 8
   end
   inherited qryPadrao: TFDQuery
+    AfterScroll = qryPadraoAfterScroll
     SQL.Strings = (
       'SELECT A.ID, '
       '       A.DESCRICAO,'
@@ -333,6 +338,40 @@ inherited frmProduto: TfrmProduto
   end
   inherited dsPadrao: TDataSource
     Left = 480
+    Top = 72
+  end
+  object QryCategoria: TFDQuery
+    Connection = DM.Conexao
+    SQL.Strings = (
+      'SELECT A.ID, '
+      '       A.NOME   '
+      'FROM CATEGORIAS A'
+      'WHERE A.ID = :ID'
+      '')
+    Left = 552
+    Top = 72
+    ParamData = <
+      item
+        Name = 'ID'
+        DataType = ftInteger
+        ParamType = ptInput
+      end>
+    object QryCategoriaID: TIntegerField
+      FieldName = 'ID'
+      Origin = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object QryCategoriaNOME: TStringField
+      FieldName = 'NOME'
+      Origin = 'NOME'
+      Required = True
+      Size = 250
+    end
+  end
+  object dsCategoria: TDataSource
+    DataSet = QryCategoria
+    Left = 632
     Top = 72
   end
 end

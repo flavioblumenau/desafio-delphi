@@ -22,9 +22,6 @@ Coordinates=190,225,59,36
 [Produtos1]
 Coordinates=111,225,73,36
 
-[Sobre1]
-Coordinates=52,225,56,36
-
 [Movimentos1]
 Coordinates=439,276,91,36
 
@@ -53,7 +50,7 @@ Coordinates=10,10,162,322
 Coordinates=203,335,157,36
 
 []
-Coordinates=271,342,114,36
+Coordinates=52,225,56,36
 Visible=True
 
 [BCategorias]

@@ -29,7 +29,6 @@ type
     Relatrios1: TMenuItem;
     ListaUsurios1: TMenuItem;
     MovimentacaoRelatorio1: TMenuItem;
-    Sobre1: TMenuItem;
     procedure AbreTelaProduto;
     procedure AbreTelaCompra;
     procedure Timer1Timer(Sender: TObject);

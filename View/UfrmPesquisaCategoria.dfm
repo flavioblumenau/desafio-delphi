@@ -1,6 +1,7 @@
 inherited frmPesquisaCategoria: TfrmPesquisaCategoria
   Caption = 'Pesquisa de Categorias de Produtos'
   StyleElements = [seFont, seClient, seBorder]
+  ExplicitLeft = -179
   TextHeight = 13
   inherited Panel1: TPanel
     StyleElements = [seFont, seClient, seBorder]

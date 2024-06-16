@@ -63,7 +63,7 @@ begin
     with qryProduto do
     begin
       Sql.clear;
-      Sql.Add('Insert into produto (id, descricao, vlvenda, vlcusto, estoque, unidade, cadastro) values');
+      Sql.Add('Insert into produto (id, descricao, vl_venda, vl_custo, estoque, unidade, cadastro) values');
       Sql.Add('(:pid, :pdescricao, :pvlvenda, :pvlcusto, :pestoque, :punidade, :pcadastro)');
       ParamByName('PId').AsInteger := oproduto.Id;
       ParamByName('PDescricao').AsString := oproduto.Descricao;
@@ -126,16 +126,16 @@ begin
     with qryProduto do
     begin
       Sql.clear;
-      Sql.Add('update produto set descricao =:pdescricao, vlvenda=:pvlvenda,');
-      Sql.Add('vlcusto=:pvlcusto, estoque= :pestoque, unidade=:punidade, cadastro=:pcadastro');
+      Sql.Add('update produto set descricao =:pdescricao, vl_venda=:pvlvenda,');
+      Sql.Add('vl_custo=:pvlcusto, estoque= :pestoque, unidade=:punidade, cadastro=:pcadastro');
       Sql.Add('where id = :pid');
       ParamByName('PId').AsInteger := oproduto.Id;
       ParamByName('PDescricao').AsString := oproduto.Descricao;
       ParamByName('PVlVenda').AsFloat := oproduto.VlVenda;
-      ParamByName('VlCusto').AsFloat := oproduto.VlCusto;
-      ParamByName('Estoque').AsInteger := oproduto.Estoque;
-      ParamByName('Unidade').AsString := oproduto.Unidade;
-      ParamByName('Cadastro').AsDateTime := oproduto.Cadastro;
+      ParamByName('PVlCusto').AsFloat := oproduto.VlCusto;
+      ParamByName('PEstoque').AsInteger := oproduto.Estoque;
+      ParamByName('PUnidade').AsString := oproduto.Unidade;
+      ParamByName('PCadastro').AsDateTime := oproduto.Cadastro;
       ExecSQL;
     end;
     oTelaUtl.salvaTransacao;

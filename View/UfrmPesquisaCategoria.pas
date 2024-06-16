@@ -16,8 +16,8 @@ type
     qryPesquisaPadraoID: TIntegerField;
     qryPesquisaPadraoNOME: TStringField;
     procedure btnPesquisarClick(Sender: TObject);
-    procedure btnTransferirClick(Sender: TObject);
     procedure btnImprimirClick(Sender: TObject);
+    procedure BSelecionarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -30,6 +30,12 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmPesquisaCategoria.BSelecionarClick(Sender: TObject);
+begin
+  inherited;
+  Codigo := qryPesquisaPadraoID.AsInteger;
+end;
 
 procedure TfrmPesquisaCategoria.btnImprimirClick(Sender: TObject);
 begin
@@ -71,10 +77,5 @@ begin
    end;
 end;
 
-procedure TfrmPesquisaCategoria.btnTransferirClick(Sender: TObject);
-begin
-  inherited;
-  Codigo := qryPesquisaPadraoID.AsInteger;
-end;
 
 end.
