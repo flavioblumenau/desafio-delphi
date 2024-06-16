@@ -13,16 +13,10 @@ type
     FVlCusto: Real;
     FVlVenda: Real;
     FEstoque: Integer;
-    FIdCategirua: Integer;
+    FIdCategoria: Integer;
     FEstoque_min: Integer;
     FUnidade: String;
     FCadastro: TDateTime;
-    FIdCidade: Integer;
-    FCPF: string;
-    FCidade: string;
-    FEstado: string;
-    FTelefone: string;
-
     procedure SetDescricao(const Value: string);
     procedure SetVlCusto(const Value: Real);
     procedure SetVlVenda(const Value: Real);
@@ -31,15 +25,14 @@ type
     procedure SetEstoque_min(const Value: Integer);
     procedure SetUnidade(const Value: String);
     procedure SetCadastro(const Value: TDateTime);
-    procedure SetCPF(const Value: string);
   public
     property Id: Integer read FId write FId;
-    property IdCidade: Integer read FIdCidade write FIdCidade;
     property Descricao: string read FDescricao write SetDescricao;
-    property CPF: string read FCPF write SetCPF;
-    property Telefone: string read FTelefone write FTelefone;
-    property Cidade: string read FCidade write FCidade;
-    property Estado: string read FEstado write FEstado;
+    property VlCusto: Real read FVlCusto write SetVlCusto;
+    property VlVenda: Real read FVlVenda write SetVlVenda;
+    property Estoque: Integer read FEstoque write SetEstoque;
+    property Unidade: String Read FUnidade write SetUnidade;
+    property Cadastro: TDateTime read FCadastro write setCadastro;
   end;
 
 implementation
@@ -77,31 +70,24 @@ end;
 
 procedure TProduto.SetIdCategirua(const Value: Integer);
 begin
-
+  FIdCategoria := Value;
 end;
 
 procedure TProduto.SetUnidade(const Value: String);
 begin
-
+  FUnidade := Value;
 end;
 
 procedure TProduto.SetVlCusto(const Value: Real);
 begin
-
+  FVlCusto := Value;
 end;
 
 procedure TProduto.SetVlVenda(const Value: Real);
 begin
-
+  FVlVenda := Value;
 end;
 
-procedure TProduto.SetCPF(const Value: string);
-begin
-  if Value = EmptyStr then
-    raise EInvalidArgument.Create('O "CPF" precisa ser preenchido!')
-  else
-    FCPF := Value;
-end;
 
 end.
 

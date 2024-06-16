@@ -41,6 +41,7 @@ type
     procedure BEditarClick(Sender: TObject);
   private
     { Private declarations }
+    procedure abrelogin;
   public
     { Public declarations }
   end;
@@ -52,7 +53,7 @@ implementation
 
 {$R *.dfm}
 
-uses uDM;
+uses uDM, UfrmLogin;
 
 procedure TfrmPadrao.BNovoClick(Sender: TObject);
 begin
@@ -69,7 +70,7 @@ end;
 
 procedure TfrmPadrao.BSairClick(Sender: TObject);
 begin
-  Close;
+  abrelogin;
 end;
 
 procedure TfrmPadrao.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -94,6 +95,11 @@ begin
      Perform(wm_nextDlgCtl, 0, 0);
    end;
 
+end;
+
+procedure TfrmPadrao.abrelogin;
+begin
+  close;
 end;
 
 procedure TfrmPadrao.BAtualizarClick(Sender: TObject);

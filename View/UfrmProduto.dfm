@@ -3,7 +3,6 @@ inherited frmProduto: TfrmProduto
   Caption = 'Cadastro de Produto'
   ClientHeight = 313
   StyleElements = [seFont, seClient, seBorder]
-  ExplicitLeft = -53
   ExplicitHeight = 352
   TextHeight = 13
   object Label1: TLabel [0]
@@ -99,10 +98,10 @@ inherited frmProduto: TfrmProduto
   end
   inherited imFundo: TImage
     Height = 189
-    ExplicitLeft = 96
-    ExplicitTop = 59
+    ExplicitLeft = 0
+    ExplicitTop = 69
     ExplicitWidth = 827
-    ExplicitHeight = 199
+    ExplicitHeight = 189
   end
   object BCategoria: TSpeedButton [11]
     Left = 253

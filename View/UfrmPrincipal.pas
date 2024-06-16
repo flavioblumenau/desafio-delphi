@@ -53,6 +53,7 @@ type
     procedure Produtos1Click(Sender: TObject);
     procedure btnComprasClick(Sender: TObject);
     procedure FormPaint(Sender: TObject);
+    procedure btnTrocarUsuarioClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -68,7 +69,7 @@ implementation
 
 {$R *.dfm}
 
-uses UfrmUsuario,  UfrmPadrao;
+uses UfrmUsuario,  UfrmPadrao, UfrmLogin;
 
 { Neste exemplo o formulário principal da
 aplicação é do tipo fsMDIForm e com essa função é
@@ -175,6 +176,17 @@ begin
    end
 
   else Abort;
+end;
+
+procedure TfrmPrincipal.btnTrocarUsuarioClick(Sender: TObject);
+begin
+  frmLogin := TfrmLogin.Create(Self);
+  try
+    frmLogin.ShowModal();
+  finally
+    FreeAndNil(frmLogin);
+  end;
+
 end;
 
 procedure TfrmPrincipal.btnUsuarioClick(Sender: TObject);

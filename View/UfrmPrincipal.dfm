@@ -2955,6 +2955,7 @@ object frmPrincipal: TfrmPrincipal
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
       Layout = blGlyphTop
       ParentFont = False
+      OnClick = btnTrocarUsuarioClick
     end
     object btnSair: TSpeedButton
       Left = 610
