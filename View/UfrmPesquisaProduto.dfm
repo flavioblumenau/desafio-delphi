@@ -1,9 +1,9 @@
 inherited frmPesquisaProduto: TfrmPesquisaProduto
+  HelpType = htKeyword
   Caption = 'Pesquisa de Produtos'
   ClientHeight = 426
+  WindowState = wsNormal
   StyleElements = [seFont, seClient, seBorder]
-  ExplicitLeft = -124
-  ExplicitTop = -14
   ExplicitHeight = 465
   TextHeight = 13
   inherited Panel1: TPanel
@@ -41,6 +41,9 @@ inherited frmPesquisaProduto: TfrmPesquisaProduto
       ExplicitTop = 10
     end
     inherited cbChavePesquisa: TComboBox
+      Font.Height = -13
+      Font.Style = []
+      ParentFont = False
       StyleElements = [seFont, seClient, seBorder]
       Items.Strings = (
         'C'#211'DIGO'
@@ -71,46 +74,23 @@ inherited frmPesquisaProduto: TfrmPesquisaProduto
   inherited DBGrid1: TDBGrid
     Top = 70
     Height = 291
+    Font.Height = -16
+    Font.Style = [fsBold]
+    ParentFont = False
+    TitleFont.Height = -16
+    TitleFont.Style = [fsBold]
     Columns = <
       item
         Expanded = False
-        FieldName = 'ID_PRODUTO'
+        FieldName = 'ID'
+        Title.Caption = 'Id'
         Visible = True
       end
       item
         Expanded = False
-        FieldName = 'PRODUTO_DESCRICAO'
+        FieldName = 'DESCRICAO'
+        Title.Caption = 'Descri'#231#227'o'
         Width = 192
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'VL_CUSTO'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'VL_VENDA'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'ESTOQUE'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'ESTOQUE_MIN'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'UNIDADE'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'CADASTRO'
         Visible = True
       end
       item
@@ -119,11 +99,48 @@ inherited frmPesquisaProduto: TfrmPesquisaProduto
         Title.Caption = 'Categoria'
         Width = 300
         Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'VL_CUSTO'
+        Title.Caption = 'Custo R$'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'VL_VENDA'
+        Title.Caption = 'Venda R$'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'ESTOQUE'
+        Title.Caption = 'Estoque'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'ESTOQUE_MIN'
+        Title.Caption = 'Estoque M'#237'n.'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'UNIDADE'
+        Title.Caption = 'Un.'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'CADASTRO'
+        Title.Caption = 'Dt. Cadastro'
+        Visible = True
       end>
   end
   inherited Panel2: TPanel
     Top = 361
     StyleElements = [seFont, seClient, seBorder]
+    ExplicitTop = 361
   end
   inherited qryPesquisaPadrao: TFDQuery
     SQL.Strings = (

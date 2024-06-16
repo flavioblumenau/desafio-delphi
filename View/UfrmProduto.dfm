@@ -212,11 +212,11 @@ inherited frmProduto: TfrmProduto
     DataField = 'CADASTRO'
     DataSource = dsPadrao
     Enabled = False
-    TabOrder = 8
+    TabOrder = 11
   end
   object edtIDCategoria: TDBEdit [21]
-    Left = 160
-    Top = 248
+    Left = 158
+    Top = 251
     Width = 89
     Height = 21
     CharCase = ecUpperCase
@@ -249,7 +249,7 @@ inherited frmProduto: TfrmProduto
       'P'#199
       'LT'
       'UN')
-    TabOrder = 11
+    TabOrder = 8
   end
   inherited qryPadrao: TFDQuery
     SQL.Strings = (
@@ -264,7 +264,7 @@ inherited frmProduto: TfrmProduto
       '       A.ID_CATEGORIA, '
       '       C.NOME                  '
       'FROM PRODUTO A'
-      'JOIN CATEGORIAS C ON A.ID_CATEGORIA=C.ID'
+      'LEFT JOIN CATEGORIAS C ON A.ID_CATEGORIA=C.ID'
       '')
     Left = 408
     Top = 72

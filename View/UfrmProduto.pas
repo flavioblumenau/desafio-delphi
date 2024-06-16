@@ -55,6 +55,7 @@ type
   private
     { Private declarations }
     procedure Searchs;
+    procedure SearchCategoria;
     procedure New;
     procedure Loads;
     procedure Updates;
@@ -74,7 +75,7 @@ procedure Arredondarcantos(componente: TDBEdit; Y:String);
 implementation
 
 uses
-  UfrmPesquisaProduto, uProdutoController, UObjetoBuscaProduto;
+  UfrmPesquisaProduto, uProdutoController, UObjetoBuscaProduto, udmProduto;
 
 {$R *.dfm}
 
@@ -82,6 +83,7 @@ procedure TfrmProduto.BCategoriaClick(Sender: TObject);
 begin
   inherited;
   // abrir a modal para pesquisar Categorias de Produtos
+  SearchCategoria;
 end;
 
 procedure TfrmProduto.BDeletarClick(Sender: TObject);
@@ -130,11 +132,7 @@ begin
   try
    ObjFrmPesquisaProduto.ShowModal;
 
-   if objFrmPesquisaProduto.Codigo > 0 then
-    begin
-     qryPadrao.Open;
-     qryPadrao.Locate('ID', objFrmPesquisaProduto.Codigo, []);
-    end;
+
   finally
    ObjFrmPesquisaProduto.Free;
   end;
@@ -157,15 +155,48 @@ begin
   end;
 end;
 
-procedure TfrmProduto.Searchs;
+procedure TfrmProduto.SearchCategoria;
 var
   oProdutoController: TProdutoController;
   oLocaliza: TLocalizaProduto;
+  id: Integer;
+  nomeCategoria: String;
 begin
   oProdutoController := TProdutoController.Create;
   try
     oLocaliza := TLocalizaProduto.Create;
-    oProdutoController.Search(oLocaliza.abreConsulta());
+    id := oLocaliza.abreConsultaCategoria();
+    oProdutoController.SearchCategoria(id, nomeCategoria);
+
+    if id > 0 then
+    begin
+     qryPadrao.Edit;
+     qryPadraoID_CATEGORIA.AsInteger := Id;
+     qryPadraoNome.AsString := nomeCategoria;
+    end;
+  finally
+    FreeAndNil(oLocaliza);
+    FreeAndNil(oProdutoController);
+  end;
+end;
+
+procedure TfrmProduto.Searchs;
+var
+  oProdutoController: TProdutoController;
+  oLocaliza: TLocalizaProduto;
+  id: Integer;
+begin
+  oProdutoController := TProdutoController.Create;
+  try
+    oLocaliza := TLocalizaProduto.Create;
+    id := oLocaliza.abreConsulta();
+    oProdutoController.Search(id);
+
+    if id > 0 then
+    begin
+     qryPadrao.Open;
+     qryPadrao.Locate('ID', Id, []);
+    end;
   finally
     FreeAndNil(oLocaliza);
     FreeAndNil(oProdutoController);
@@ -199,6 +230,7 @@ begin
   if qryPadrao.state in [dsEdit] then
     qryPadrao.Cancel;
   qryPadrao.Insert;
+  qryPadraoCADASTRO.AsDateTime := NOW;
 end;
 
 procedure TfrmProduto.Inserts;
@@ -213,11 +245,13 @@ begin
     begin
       with oProduto do
       begin
-        Id := qryPadraoId.AsInteger;
+        Id            := qryPadraoId.AsInteger;
         Descricao     := qryPadraoDESCRICAO.Text;
-
-        // concluir lista de campos
-
+        VlVenda       := qryPadraoVL_VENDA.AsFloat;
+        VlCusto       := qryPadraoVL_CUSTO.AsFloat;
+        Estoque       := qryPadraoESTOQUE.AsInteger;
+        Unidade       := qryPadraoUNIDADE.AsString;
+        Cadastro      := qryPadraoCADASTRO.AsDateTime;
       end;
       if not oProdutoController.Insert(oProduto, iId, sErro) then
         raise Exception.Create(sErro);

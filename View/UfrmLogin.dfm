@@ -310,6 +310,7 @@ object frmLogin: TfrmLogin
     Font.Style = [fsBold]
     ParentFont = False
     TabOrder = 2
+    OnKeyUp = EUsuarioKeyUp
   end
   object ESenha: TEdit
     Left = 144
@@ -324,6 +325,7 @@ object frmLogin: TfrmLogin
     ParentFont = False
     PasswordChar = '*'
     TabOrder = 3
+    OnKeyUp = ESenhaKeyUp
   end
   object qryPadrao: TFDQuery
     Connection = DM.Conexao

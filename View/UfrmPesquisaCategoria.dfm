@@ -1,4 +1,4 @@
-inherited frmPesquisaUsuario: TfrmPesquisaUsuario
+inherited frmPesquisaCategoria: TfrmPesquisaCategoria
   Caption = 'Pesquisa de Categorias de Produtos'
   StyleElements = [seFont, seClient, seBorder]
   TextHeight = 13
@@ -17,6 +17,9 @@ inherited frmPesquisaUsuario: TfrmPesquisaUsuario
       StyleElements = [seFont, seClient, seBorder]
     end
     inherited cbChavePesquisa: TComboBox
+      Font.Height = -13
+      Font.Style = []
+      ParentFont = False
       StyleElements = [seFont, seClient, seBorder]
       Items.Strings = (
         'C'#211'DIGO'
@@ -34,46 +37,41 @@ inherited frmPesquisaUsuario: TfrmPesquisaUsuario
     end
   end
   inherited DBGrid1: TDBGrid
+    Font.Height = -16
+    Font.Style = [fsBold]
+    ParentFont = False
+    TitleFont.Height = -16
+    TitleFont.Style = [fsBold]
     Columns = <
       item
         Expanded = False
-        FieldName = 'ID_USUARIO'
+        FieldName = 'ID'
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'NOME'
+        Title.Caption = 'Categoria'
         Width = 473
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'TIPO'
-        Visible = True
-      end
-      item
-        Expanded = False
-        FieldName = 'CADASTRO'
         Visible = True
       end>
   end
   inherited Panel2: TPanel
     StyleElements = [seFont, seClient, seBorder]
+    ExplicitTop = 286
   end
   inherited qryPesquisaPadrao: TFDQuery
     SQL.Strings = (
       'SELECT '
-      '  ID_USUARIO,'
-      '  NOME,'
-      '  TIPO,'
-      '  CADASTRO'
-      'FROM TBLUSUARIO'
-      'ORDER BY ID_USUARIO')
+      '  ID,'
+      '  NOME'
+      'FROM Categorias'
+      'ORDER BY ID')
     Left = 360
     Top = 176
-    object qryPesquisaPadraoID_USUARIO: TIntegerField
-      FieldName = 'ID_USUARIO'
-      Origin = 'ID_USUARIO'
+    object qryPesquisaPadraoID: TIntegerField
+      FieldName = 'ID'
+      Origin = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
     end
@@ -81,17 +79,7 @@ inherited frmPesquisaUsuario: TfrmPesquisaUsuario
       FieldName = 'NOME'
       Origin = 'NOME'
       Required = True
-      Size = 100
-    end
-    object qryPesquisaPadraoTIPO: TStringField
-      FieldName = 'TIPO'
-      Origin = 'TIPO'
-      Size = 30
-    end
-    object qryPesquisaPadraoCADASTRO: TDateField
-      FieldName = 'CADASTRO'
-      Origin = 'CADASTRO'
-      Required = True
+      Size = 250
     end
   end
   inherited dsPesquisaPadrao: TDataSource
@@ -105,7 +93,7 @@ inherited frmPesquisaUsuario: TfrmPesquisaUsuario
     Datasets = <
       item
         DataSet = frxDB
-        DataSetName = 'frxDBUsuarios'
+        DataSetName = 'frxDBCategorias'
       end>
     Variables = <>
     Style = <>
@@ -216,17 +204,17 @@ inherited frmPesquisaUsuario: TfrmPesquisaUsuario
         Top = 204.094620000000000000
         Width = 642.520100000000000000
         DataSet = frxDB
-        DataSetName = 'frxDBUsuarios'
+        DataSetName = 'frxDBCategorias'
         RowCount = 0
-        object frxDBUsuariosID_USUARIO: TfrxMemoView
+        object frxDBCategoriasID_Categoria: TfrxMemoView
           IndexTag = 1
           Align = baWidth
           AllowVectorExport = True
           Width = 79.370130000000000000
           Height = 18.897650000000000000
-          DataField = 'ID_USUARIO'
+          DataField = 'ID_Categoria'
           DataSet = frxDB
-          DataSetName = 'frxDBUsuarios'
+          DataSetName = 'frxDBCategorias'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -235,10 +223,10 @@ inherited frmPesquisaUsuario: TfrmPesquisaUsuario
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
           HAlign = haCenter
           Memo.UTF8W = (
-            '[frxDBUsuarios."ID_USUARIO"]')
+            '[frxDBCategorias."ID_Categoria"]')
           ParentFont = False
         end
-        object frxDBUsuariosNOME: TfrxMemoView
+        object frxDBCategoriasNOME: TfrxMemoView
           IndexTag = 1
           Align = baWidth
           AllowVectorExport = True
@@ -247,7 +235,7 @@ inherited frmPesquisaUsuario: TfrmPesquisaUsuario
           Height = 18.897650000000000000
           DataField = 'NOME'
           DataSet = frxDB
-          DataSetName = 'frxDBUsuarios'
+          DataSetName = 'frxDBCategorias'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -256,10 +244,10 @@ inherited frmPesquisaUsuario: TfrmPesquisaUsuario
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
           HAlign = haCenter
           Memo.UTF8W = (
-            '[frxDBUsuarios."NOME"]')
+            '[frxDBCategorias."NOME"]')
           ParentFont = False
         end
-        object frxDBUsuariosTIPO: TfrxMemoView
+        object frxDBCategoriasTIPO: TfrxMemoView
           IndexTag = 1
           Align = baWidth
           AllowVectorExport = True
@@ -268,7 +256,7 @@ inherited frmPesquisaUsuario: TfrmPesquisaUsuario
           Height = 18.897650000000000000
           DataField = 'TIPO'
           DataSet = frxDB
-          DataSetName = 'frxDBUsuarios'
+          DataSetName = 'frxDBCategorias'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -277,10 +265,10 @@ inherited frmPesquisaUsuario: TfrmPesquisaUsuario
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
           HAlign = haCenter
           Memo.UTF8W = (
-            '[frxDBUsuarios."TIPO"]')
+            '[frxDBCategorias."TIPO"]')
           ParentFont = False
         end
-        object frxDBUsuariosCADASTRO: TfrxMemoView
+        object frxDBCategoriasCADASTRO: TfrxMemoView
           IndexTag = 1
           Align = baWidth
           AllowVectorExport = True
@@ -289,7 +277,7 @@ inherited frmPesquisaUsuario: TfrmPesquisaUsuario
           Height = 18.897650000000000000
           DataField = 'CADASTRO'
           DataSet = frxDB
-          DataSetName = 'frxDBUsuarios'
+          DataSetName = 'frxDBCategorias'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clBlack
           Font.Height = -13
@@ -298,7 +286,7 @@ inherited frmPesquisaUsuario: TfrmPesquisaUsuario
           Frame.Typ = [ftLeft, ftRight, ftTop, ftBottom]
           HAlign = haCenter
           Memo.UTF8W = (
-            '[frxDBUsuarios."CADASTRO"]')
+            '[frxDBCategorias."CADASTRO"]')
           ParentFont = False
         end
       end
@@ -380,12 +368,12 @@ inherited frmPesquisaUsuario: TfrmPesquisaUsuario
     end
   end
   inherited frxDB: TfrxDBDataset
-    UserName = 'frxDBUsuarios'
+    UserName = 'frxDBCategorias'
     Left = 736
     Top = 176
     FieldDefs = <
       item
-        FieldName = 'ID_USUARIO'
+        FieldName = 'ID_Categoria'
       end
       item
         FieldName = 'NOME'

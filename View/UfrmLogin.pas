@@ -25,6 +25,8 @@ type
     procedure FormCreate(Sender: TObject);
     procedure BLogarClick(Sender: TObject);
     procedure BCancelarClick(Sender: TObject);
+    procedure ESenhaKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure EUsuarioKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     { Private declarations }
      tentativas : Smallint;
@@ -85,6 +87,18 @@ begin
 		ModalResult := mrCancel;
 		end;
 	end;
+end;
+
+procedure TfrmLogin.ESenhaKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if key = 13 then bLogar.Click;
+end;
+
+procedure TfrmLogin.EUsuarioKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if key = 13 then ESenha.SetFocus;
 end;
 
 procedure TfrmLogin.FormCreate(Sender: TObject);

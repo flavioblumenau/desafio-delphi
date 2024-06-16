@@ -9,6 +9,7 @@ type
   private
   public
     function abreConsulta(): Integer;
+    function abreConsultaCategoria(): Integer;
   end;
 
 
@@ -16,7 +17,7 @@ implementation
 
 { TLocalizaProduto }
 
-uses UfrmPesquisaProduto;
+uses UfrmPesquisaProduto, UfrmPesquisaCategoria;
 
 function TLocalizaProduto.abreConsulta: Integer;
 var
@@ -25,10 +26,24 @@ begin
   objetoTela := TfrmPesquisaProduto.Create(nil);
   try
     objetoTela.ShowModal;
-    result := objetoTela.qryPesquisaPadraoID.AsInteger;
+    result := objetoTela.codigo;
   finally
     FreeAndNil(objetoTela);
   end;
+end;
+
+function TLocalizaProduto.abreConsultaCategoria: Integer;
+var
+  objetoTela: TfrmPesquisaCategoria;
+begin
+  objetoTela := TfrmPesquisaCategoria.Create(nil);
+  try
+    objetoTela.ShowModal;
+    result := objetoTela.codigo;
+  finally
+    FreeAndNil(objetoTela);
+  end;
+
 end;
 
 end.

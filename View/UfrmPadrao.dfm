@@ -364,6 +364,7 @@ object frmPadrao: TfrmPadrao
       Width = 92
       Height = 45
       Caption = '&Gravar'
+      Enabled = False
       Glyph.Data = {
         360C0000424D360C000000000000360000002800000020000000200000000100
         180000000000000C0000DD000000DD0000000000000000000000FFFFFFFFFFFF

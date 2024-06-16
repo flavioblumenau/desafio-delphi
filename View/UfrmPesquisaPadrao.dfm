@@ -2,7 +2,7 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
   Left = 0
   Top = 0
   Caption = 'Formul'#225'rio de Pesquisa Padr'#227'o'
-  ClientHeight = 486
+  ClientHeight = 351
   ClientWidth = 936
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -11,7 +11,6 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
   Font.Name = 'Tahoma'
   Font.Style = []
   KeyPreview = True
-  WindowState = wsMaximized
   OnClose = FormClose
   OnCreate = FormCreate
   OnKeyDown = FormKeyDown
@@ -470,7 +469,7 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
     Left = 0
     Top = 65
     Width = 936
-    Height = 356
+    Height = 221
     Align = alClient
     DataSource = dsPesquisaPadrao
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -484,13 +483,14 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
   end
   object Panel2: TPanel
     Left = 0
-    Top = 421
+    Top = 286
     Width = 936
     Height = 65
     Align = alBottom
     Color = 13298927
     ParentBackground = False
     TabOrder = 2
+    ExplicitTop = 421
   end
   object qryPesquisaPadrao: TFDQuery
     Connection = DM.Conexao

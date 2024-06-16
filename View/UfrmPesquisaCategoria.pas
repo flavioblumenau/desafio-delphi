@@ -12,11 +12,9 @@ uses
   frxClass, frxDBSet, frxSmartMemo, frCoreClasses;
 
 type
-  TfrmPesquisaUsuario = class(TfrmPesquisaPadrao)
-    qryPesquisaPadraoID_USUARIO: TIntegerField;
+  TfrmPesquisaCategoria = class(TfrmPesquisaPadrao)
+    qryPesquisaPadraoID: TIntegerField;
     qryPesquisaPadraoNOME: TStringField;
-    qryPesquisaPadraoTIPO: TStringField;
-    qryPesquisaPadraoCADASTRO: TDateField;
     procedure btnPesquisarClick(Sender: TObject);
     procedure btnTransferirClick(Sender: TObject);
     procedure btnImprimirClick(Sender: TObject);
@@ -27,23 +25,23 @@ type
   end;
 
 var
-  frmPesquisaUsuario: TfrmPesquisaUsuario;
+  frmPesquisaCategoria: TfrmPesquisaCategoria;
 
 implementation
 
 {$R *.dfm}
 
-procedure TfrmPesquisaUsuario.btnImprimirClick(Sender: TObject);
+procedure TfrmPesquisaCategoria.btnImprimirClick(Sender: TObject);
 begin
   NomeRelatorio := 'relUsuario.fr3';
   inherited;
 end;
 
-procedure TfrmPesquisaUsuario.btnPesquisarClick(Sender: TObject);
+procedure TfrmPesquisaCategoria.btnPesquisarClick(Sender: TObject);
 begin
   inherited;
 
-  qryPesquisaPadrao.SQL.Add('SELECT ID, NOME, TIPO FROM CATEGORIAS');
+  qryPesquisaPadrao.SQL.Add('SELECT ID, NOME FROM CATEGORIAS');
 
   case cbChavePesquisa.ItemIndex of
    0 : // Pesquisa por Código
@@ -73,10 +71,10 @@ begin
    end;
 end;
 
-procedure TfrmPesquisaUsuario.btnTransferirClick(Sender: TObject);
+procedure TfrmPesquisaCategoria.btnTransferirClick(Sender: TObject);
 begin
   inherited;
-  Codigo := qryPesquisaPadraoID_USUARIO.AsInteger;
+  Codigo := qryPesquisaPadraoID.AsInteger;
 end;
 
 end.

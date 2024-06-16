@@ -52,7 +52,7 @@ begin
 
   qryPesquisaPadrao.SQL.Add('SELECT A.ID, A.DESCRICAO, A.VL_CUSTO, A.VL_VENDA, '
   + 'A.ESTOQUE, A.ESTOQUE_MIN, A.UNIDADE, A.CADASTRO, A.ID_CATEGORIA, B.NOME FROM PRODUTO A '
-  + 'INNER JOIN CATEGORIAS B ON A.ID_CATEGORIA = B.ID ');
+  + 'LEFT JOIN CATEGORIAS B ON A.ID_CATEGORIA = B.ID ');
 
   case cbChavePesquisa.ItemIndex of
    0 : // Pesquisa por Código

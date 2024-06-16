@@ -12,6 +12,7 @@ type
     constructor Create;
     destructor Destroy; override;
     procedure Search(id: Integer);
+    procedure SearchCategoria(id: Integer; var nome: string);
     procedure Load(oProduto: TProduto; iId: Integer);
     function Insert(oProduto: TProduto; out iId: Integer; out sErro: string): Boolean;
     function Update(oProduto: TProduto; out sErro: string): Boolean;
@@ -42,6 +43,13 @@ procedure TProdutoController.Search(id: Integer);
 begin
   // carrega dados do objeto
   dmProduto.Search(id);
+end;
+
+procedure TProdutoController.SearchCategoria(id: Integer; var nome: string);
+begin
+  // carrega dados do objeto
+  dmProduto.SearchCategoria(id); // carrega dados do objeto
+
 end;
 
 procedure TProdutoController.Load(oProduto: TProduto; iId: Integer);

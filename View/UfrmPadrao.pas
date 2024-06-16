@@ -64,7 +64,7 @@ end;
 
 procedure TfrmPadrao.BPesquisarClick(Sender: TObject);
 begin
-//
+  //
 end;
 
 procedure TfrmPadrao.BSairClick(Sender: TObject);

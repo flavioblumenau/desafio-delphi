@@ -96,6 +96,19 @@ begin
     Parent := Self;
     Align := alClient;
   end;
+
+  with TImage.Create(Self) do
+  begin
+    Picture.LoadFromFile(ExtractFilePath(Application.ExeName)+ '../Imagens/porto.jpg');
+    Stretch := false;
+    Parent := Self;
+    top := 80;
+    left := 150;
+    width := 640;
+    height := 428;
+    align := alclient;
+    center := true;
+  end;
 end;
 
 procedure TfrmPrincipal.Produtos1Click(Sender: TObject);
