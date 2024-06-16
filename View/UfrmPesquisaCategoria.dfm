@@ -1,5 +1,5 @@
 inherited frmPesquisaUsuario: TfrmPesquisaUsuario
-  Caption = 'Pesquisa de Usu'#225'rios'
+  Caption = 'Pesquisa de Categorias de Produtos'
   StyleElements = [seFont, seClient, seBorder]
   TextHeight = 13
   inherited Panel1: TPanel
@@ -18,6 +18,10 @@ inherited frmPesquisaUsuario: TfrmPesquisaUsuario
     end
     inherited cbChavePesquisa: TComboBox
       StyleElements = [seFont, seClient, seBorder]
+      Items.Strings = (
+        'C'#211'DIGO'
+        'NOME'
+        'TODOS')
     end
     inherited edtNome: TEdit
       StyleElements = [seFont, seClient, seBorder]

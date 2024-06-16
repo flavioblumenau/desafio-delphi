@@ -108,13 +108,10 @@
         <DCCReference Include="..\View\UfrmPadrao.pas">
             <Form>frmPadrao</Form>
         </DCCReference>
-        <DCCReference Include="..\View\UfrmUsuario.pas">
-            <Form>frmUsuario</Form>
-        </DCCReference>
         <DCCReference Include="..\View\UfrmProduto.pas">
             <Form>frmProduto</Form>
         </DCCReference>
-        <DCCReference Include="..\View\UfrmPesquisaUsuario.pas">
+        <DCCReference Include="..\View\UfrmPesquisaCategoria.pas">
             <Form>frmPesquisaUsuario</Form>
         </DCCReference>
         <DCCReference Include="..\View\UfrmPesquisaProduto.pas">
@@ -145,6 +142,8 @@
             <Form>frmLogin</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\Controller\UObjetoTelaUtil.pas"/>
+        <DCCReference Include="..\Controller\UObjetoBuscaProduto.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

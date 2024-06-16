@@ -13,7 +13,7 @@ type
     { Public declarations }
         { Public declarations }
     function GerarId: Integer;
-    procedure Search(sNome: string);
+    procedure Search(id: Integer);
     procedure Load(oCliente: TProduto; iId: Integer);
     function Insert(oCliente: TProduto; out iId: Integer; out sErro: string): Boolean;
     function Update(oCliente: TProduto; out sErro: string): Boolean;
@@ -50,9 +50,9 @@ begin
 
 end;
 
-procedure TdmProduto.Search(sNome: string);
+procedure TdmProduto.Search(id: Integer);
 begin
-
+  ///
 end;
 
 function TdmProduto.Update(oCliente: TProduto; out sErro: string): Boolean;

@@ -23,7 +23,13 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
     Height = 65
     Align = alTop
     Color = 13298927
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
     ParentBackground = False
+    ParentFont = False
     TabOrder = 0
     object Label1: TLabel
       Left = 8
@@ -39,7 +45,7 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
       ParentFont = False
     end
     object lblNome: TLabel
-      Left = 184
+      Left = 168
       Top = 10
       Width = 42
       Height = 19
@@ -52,7 +58,7 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
       ParentFont = False
     end
     object lblInicio: TLabel
-      Left = 416
+      Left = 384
       Top = 10
       Width = 76
       Height = 19
@@ -65,7 +71,7 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
       ParentFont = False
     end
     object lblFim: TLabel
-      Left = 520
+      Left = 512
       Top = 10
       Width = 63
       Height = 19
@@ -191,7 +197,7 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
       OnClick = btnPesquisarClick
     end
     object btnImprimir: TSpeedButton
-      Left = 836
+      Left = 724
       Top = 14
       Width = 95
       Height = 45
@@ -303,12 +309,12 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
       ParentFont = False
       OnClick = btnImprimirClick
     end
-    object btnTransferir: TSpeedButton
-      Left = 733
+    object BSelecionar: TSpeedButton
+      Left = 833
       Top = 14
       Width = 95
       Height = 45
-      Caption = '&Transferir'
+      Caption = 'Selecionar'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -12
@@ -414,7 +420,7 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
         614FA04B489A4547984253B1505EB65B75C07295CF93C3E3C1F6FBF6FFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
       ParentFont = False
-      OnClick = btnTransferirClick
+      OnClick = BSelecionarClick
     end
     object cbChavePesquisa: TComboBox
       Left = 8
@@ -432,28 +438,28 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
         'TODOS')
     end
     object edtNome: TEdit
-      Left = 184
+      Left = 169
       Top = 35
       Width = 209
-      Height = 21
+      Height = 27
       CharCase = ecUpperCase
       TabOrder = 1
     end
     object edtInicio: TMaskEdit
-      Left = 416
+      Left = 384
       Top = 35
-      Width = 87
-      Height = 21
+      Width = 122
+      Height = 27
       EditMask = '!##/##/####;1;_'
       MaxLength = 10
       TabOrder = 2
       Text = '  /  /    '
     end
     object edtFim: TMaskEdit
-      Left = 520
+      Left = 512
       Top = 35
-      Width = 87
-      Height = 21
+      Width = 113
+      Height = 27
       EditMask = '!##/##/####;1;_'
       MaxLength = 10
       TabOrder = 3

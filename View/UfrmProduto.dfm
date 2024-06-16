@@ -128,9 +128,6 @@ inherited frmProduto: TfrmProduto
     inherited BCancelar: TSpeedButton
       Flat = True
     end
-    inherited BAtualizar: TSpeedButton
-      Flat = True
-    end
     inherited BPesquisar: TSpeedButton
       Flat = True
     end
@@ -228,7 +225,7 @@ inherited frmProduto: TfrmProduto
     TabOrder = 9
   end
   object edtCategoria: TDBEdit [22]
-    Left = 280
+    Left = 282
     Top = 248
     Width = 415
     Height = 21

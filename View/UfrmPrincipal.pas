@@ -11,49 +11,36 @@ uses
 type
   TfrmPrincipal = class(TForm)
     Panel1: TPanel;
-    btnUsuario: TSpeedButton;
-    btnProdutos: TSpeedButton;
-    btnFormaPgto: TSpeedButton;
-    btnCompras: TSpeedButton;
-    btnVendas: TSpeedButton;
-    btnTrocarUsuario: TSpeedButton;
-    btnSair: TSpeedButton;
+    BProdutos: TSpeedButton;
+    BCategorias: TSpeedButton;
+    BCompras: TSpeedButton;
+    BVendas: TSpeedButton;
+    BSair: TSpeedButton;
     StatusBar1: TStatusBar;
     Timer1: TTimer;
     MainMenu1: TMainMenu;
     Cadastro1: TMenuItem;
     Usurio1: TMenuItem;
-    Empresa1: TMenuItem;
-    Cliente1: TMenuItem;
-    Fornecedores1: TMenuItem;
     Produtos1: TMenuItem;
-    FormadePgto1: TMenuItem;
+    categoriasProd1: TMenuItem;
     Movimentos1: TMenuItem;
     Compras1: TMenuItem;
     Vendas1: TMenuItem;
     Relatrios1: TMenuItem;
     ListaUsurios1: TMenuItem;
-    ListaFornecedores1: TMenuItem;
-    ListaClientes1: TMenuItem;
-    ListaProdutos1: TMenuItem;
-    ListaCompras1: TMenuItem;
-    ListaVendas1: TMenuItem;
+    MovimentacaoRelatorio1: TMenuItem;
     Sobre1: TMenuItem;
-    procedure AbreTelaUsuario;
     procedure AbreTelaProduto;
     procedure AbreTelaCompra;
     procedure Timer1Timer(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure btnSairClick(Sender: TObject);
+    procedure BSairClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
-    procedure btnUsuarioClick(Sender: TObject);
-    procedure Usurio1Click(Sender: TObject);
 
-    procedure btnProdutosClick(Sender: TObject);
+    procedure BProdutosClick(Sender: TObject);
     procedure Produtos1Click(Sender: TObject);
-    procedure btnComprasClick(Sender: TObject);
+    procedure BComprasClick(Sender: TObject);
     procedure FormPaint(Sender: TObject);
-    procedure btnTrocarUsuarioClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -69,7 +56,7 @@ implementation
 
 {$R *.dfm}
 
-uses UfrmUsuario,  UfrmPadrao, UfrmLogin;
+uses UfrmPadrao, UfrmLogin;
 
 { Neste exemplo o formulário principal da
 aplicação é do tipo fsMDIForm e com essa função é
@@ -143,31 +130,17 @@ begin
   end;
 end;
 
-procedure TfrmPrincipal.AbreTelaUsuario;
-var
-  ObjFrmUsuario : TfrmUsuario;
-begin
-  ObjFrmUsuario := TfrmUsuario.Create(nil);
-
-  try
-    ObjFrmUsuario.ShowModal;
-  finally
-    ObjFrmUsuario.Free;
-  end;
-end;
-
-
-procedure TfrmPrincipal.btnComprasClick(Sender: TObject);
+procedure TfrmPrincipal.BComprasClick(Sender: TObject);
 begin
   AbreTelaCompra;
 end;
 
-procedure TfrmPrincipal.btnProdutosClick(Sender: TObject);
+procedure TfrmPrincipal.BProdutosClick(Sender: TObject);
 begin
   AbreTelaProduto;
 end;
 
-procedure TfrmPrincipal.btnSairClick(Sender: TObject);
+procedure TfrmPrincipal.BSairClick(Sender: TObject);
 begin
   if MessageBox(Handle, 'Deseja sair do sistema?', 'Sair',
   MB_ICONQUESTION + MB_YESNO) = mrYes then
@@ -178,33 +151,12 @@ begin
   else Abort;
 end;
 
-procedure TfrmPrincipal.btnTrocarUsuarioClick(Sender: TObject);
-begin
-  frmLogin := TfrmLogin.Create(Self);
-  try
-    frmLogin.ShowModal();
-  finally
-    FreeAndNil(frmLogin);
-  end;
-
-end;
-
-procedure TfrmPrincipal.btnUsuarioClick(Sender: TObject);
-begin
-  AbreTelaUsuario;
-end;
-
 procedure TfrmPrincipal.Timer1Timer(Sender: TObject);
 begin
   // Insere dados no StatusBar
   StatusBar1.Panels[0].Text := DateToStr(Now);
   StatusBar1.Panels[1].Text := TimeToStr(Now);
 
-end;
-
-procedure TfrmPrincipal.Usurio1Click(Sender: TObject);
-begin
-  AbreTelaUsuario;
 end;
 
 procedure TfrmPrincipal.Formpaint(Sender: TObject);

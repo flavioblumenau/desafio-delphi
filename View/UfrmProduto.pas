@@ -74,7 +74,7 @@ procedure Arredondarcantos(componente: TDBEdit; Y:String);
 implementation
 
 uses
-  UfrmPesquisaProduto, uProdutoController;
+  UfrmPesquisaProduto, uProdutoController, UObjetoBuscaProduto;
 
 {$R *.dfm}
 
@@ -160,11 +160,14 @@ end;
 procedure TfrmProduto.Searchs;
 var
   oProdutoController: TProdutoController;
+  oLocaliza: TLocalizaProduto;
 begin
   oProdutoController := TProdutoController.Create;
   try
-    oProdutoController.Search(edtProdutoDescricao.text);
+    oLocaliza := TLocalizaProduto.Create;
+    oProdutoController.Search(oLocaliza.abreConsulta());
   finally
+    FreeAndNil(oLocaliza);
     FreeAndNil(oProdutoController);
   end;
 end;
@@ -192,7 +195,10 @@ end;
 
 procedure TfrmProduto.New;
 begin
-
+  qryPadrao.Open();
+  if qryPadrao.state in [dsEdit] then
+    qryPadrao.Cancel;
+  qryPadrao.Insert;
 end;
 
 procedure TfrmProduto.Inserts;
@@ -209,6 +215,7 @@ begin
       begin
         Id := qryPadraoId.AsInteger;
         Descricao     := qryPadraoDESCRICAO.Text;
+
         // concluir lista de campos
 
       end;
@@ -254,7 +261,7 @@ begin
       raise Exception.Create('Não há registro para ser excluído!');
     if not oProdutoController.Delete(qryPadraoID.AsInteger, sErro) then
       raise Exception.Create(sErro);
-    oProdutoController.Search(EmptyStr);
+    oProdutoController.Search(0);
   finally
     FreeAndNil(oProdutoController);
   end;
@@ -276,7 +283,7 @@ begin
       Updates;
   oProdutoController := TProdutoController.Create;
   try
-    oProdutoController.Search(EmptyStr);
+    oProdutoController.Search(0);
   finally
     FreeAndNil(oProdutoController);
   end;

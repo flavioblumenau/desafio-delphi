@@ -26,7 +26,7 @@ type
     Panel2: TPanel;
     btnPesquisar: TSpeedButton;
     btnImprimir: TSpeedButton;
-    btnTransferir: TSpeedButton;
+    BSelecionar: TSpeedButton;
     qryPesquisaPadrao: TFDQuery;
     dsPesquisaPadrao: TDataSource;
     frxReport: TfrxReport;
@@ -36,7 +36,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
-    procedure btnTransferirClick(Sender: TObject);
+    procedure BSelecionarClick(Sender: TObject);
     procedure DBGrid1DblClick(Sender: TObject);
     procedure btnImprimirClick(Sender: TObject);
   private
@@ -81,7 +81,7 @@ begin
   qryPesquisaPadrao.Params.Clear;
 end;
 
-procedure TfrmPesquisaPadrao.btnTransferirClick(Sender: TObject);
+procedure TfrmPesquisaPadrao.BSelecionarClick(Sender: TObject);
 begin
   if qryPesquisaPadrao.RecordCount > 0 then ModalResult := mrOK
   else Abort;
@@ -145,7 +145,7 @@ end;
 
 procedure TfrmPesquisaPadrao.DBGrid1DblClick(Sender: TObject);
 begin
-  btnTransferir.Click;
+  BSelecionar.Click;
 end;
 
 procedure TfrmPesquisaPadrao.FormClose(Sender: TObject;

@@ -25,7 +25,7 @@ type
     procedure btnPesquisarClick(Sender: TObject);
     procedure cbChavePesquisaChange(Sender: TObject);
     procedure btnTransferirClick(Sender: TObject);
-    procedure btnImprimirClick(Sender: TObject);
+    procedure BSelecionarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -39,24 +39,25 @@ implementation
 
 {$R *.dfm}
 
-procedure TfrmPesquisaProduto.btnImprimirClick(Sender: TObject);
+procedure TfrmPesquisaProduto.BSelecionarClick(Sender: TObject);
 begin
-  NomeRelatorio := 'relProduto.fr3';
   inherited;
+  Codigo := qryPesquisaPadraoID.AsInteger;
+  ModalResult := mrOk;
 end;
 
 procedure TfrmPesquisaProduto.btnPesquisarClick(Sender: TObject);
 begin
   inherited;
 
-  qryPesquisaPadrao.SQL.Add('SELECT A.ID_PRODUTO, A.PRODUTO_DESCRICAO, A.VL_CUSTO, A.VL_VENDA, '
-  + 'A.ESTOQUE, A.ESTOQUE_MIN, A.UNIDADE, A.CADASTRO, A.ID_FORNECEDOR, B.NOME FROM TBLPRODUTO A '
-  + 'INNER JOIN TBLFORNECEDOR B ON A.ID_FORNECEDOR = B.ID_FORNECEDOR');
+  qryPesquisaPadrao.SQL.Add('SELECT A.ID, A.DESCRICAO, A.VL_CUSTO, A.VL_VENDA, '
+  + 'A.ESTOQUE, A.ESTOQUE_MIN, A.UNIDADE, A.CADASTRO, A.ID_CATEGORIA, B.NOME FROM PRODUTO A '
+  + 'INNER JOIN CATEGORIAS B ON A.ID_CATEGORIA = B.ID ');
 
   case cbChavePesquisa.ItemIndex of
    0 : // Pesquisa por Código
     begin
-     qryPesquisaPadrao.SQL.Add('WHERE A.ID_PRODUTO = :pId_Produto');
+     qryPesquisaPadrao.SQL.Add('WHERE A.ID = :pId_Produto');
      qryPesquisaPadrao.ParamByName('pId_Produto').AsString := edtNome.Text;
     end;
 
@@ -81,13 +82,13 @@ begin
 
    4 : // Pesquisa por Todos os registros
     begin
-     qryPesquisaPadrao.SQL.Add('ORDER BY A.ID_PRODUTO');
+     qryPesquisaPadrao.SQL.Add('ORDER BY A.ID');
     end;
 
-    5 : // Pesquisa pelo Fornecedor
+    5 : // Pesquisa pela categoria
     begin
-     qryPesquisaPadrao.SQL.Add('WHERE A.ID_FORNECEDOR = :pId_Fornecedor');
-     qryPesquisaPadrao.ParamByName('pId_Fornecedor').AsString := edtNome.Text;
+     qryPesquisaPadrao.SQL.Add('WHERE A.ID_CATEGORIA = :pId');
+     qryPesquisaPadrao.ParamByName('pId').AsString := edtNome.Text;
     end;
   end;
 
@@ -112,7 +113,7 @@ begin
     begin
      edtNome.Visible := True;
      lblNome.Visible := True;
-     lblNome.Caption := 'Fornecedor';
+     lblNome.Caption := 'Categoria';
      Exit;
     end;
   end;

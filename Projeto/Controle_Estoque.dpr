@@ -2,13 +2,12 @@ program Controle_Estoque;
 
 uses
   Vcl.Forms,
-  Controls, //Declarado devido ao uso da constante mrOk
-  SysUtils, //Declarado devido ao uso do método FreeAndNil
+  Controls,
+  SysUtils,
   UfrmPrincipal in '..\View\UfrmPrincipal.pas' {frmPrincipal},
   UfrmPadrao in '..\View\UfrmPadrao.pas' {frmPadrao},
-  UfrmUsuario in '..\View\UfrmUsuario.pas' {frmUsuario},
   UfrmProduto in '..\View\UfrmProduto.pas' {frmProduto},
-  UfrmPesquisaUsuario in '..\View\UfrmPesquisaUsuario.pas' {frmPesquisaUsuario},
+  UfrmPesquisaCategoria in '..\View\UfrmPesquisaCategoria.pas' {frmPesquisaUsuario},
   UfrmPesquisaProduto in '..\View\UfrmPesquisaProduto.pas' {frmPesquisaProduto},
   UfrmPesquisaPadrao in '..\View\UfrmPesquisaPadrao.pas' {frmPesquisaPadrao},
   UfrmPadraoMovimento in '..\View\UfrmPadraoMovimento.pas' {frmPadraoMovimento},
@@ -17,7 +16,9 @@ uses
   uDM in '..\Dao\uDM.pas' {DM: TDataModule},
   uProdutoController in '..\Controller\uProdutoController.pas',
   udmProduto in '..\Dao\udmProduto.pas' {dmProduto: TDataModule},
-  UfrmLogin in '..\View\UfrmLogin.pas' {frmLogin};
+  UfrmLogin in '..\View\UfrmLogin.pas' {frmLogin},
+  UObjetoTelaUtil in '..\Controller\UObjetoTelaUtil.pas',
+  UObjetoBuscaProduto in '..\Controller\UObjetoBuscaProduto.pas';
 
 {$R *.res}
 

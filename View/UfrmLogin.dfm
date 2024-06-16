@@ -57,8 +57,6 @@ object frmLogin: TfrmLogin
     Color = 13298927
     ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = -203
-    ExplicitWidth = 827
     object BLogar: TSpeedButton
       Left = 194
       Top = 10
@@ -297,9 +295,6 @@ object frmLogin: TfrmLogin
     Color = 13298927
     ParentBackground = False
     TabOrder = 1
-    ExplicitLeft = -203
-    ExplicitTop = 256
-    ExplicitWidth = 827
   end
   object EUsuario: TEdit
     Left = 144
@@ -307,6 +302,7 @@ object frmLogin: TfrmLogin
     Width = 266
     Height = 31
     AutoSize = False
+    CharCase = ecUpperCase
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -19

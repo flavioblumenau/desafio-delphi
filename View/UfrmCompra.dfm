@@ -1,22 +1,18 @@
 inherited frmCompra: TfrmCompra
   Caption = 'Cadastro de Compras'
-  PixelsPerInch = 96
+  StyleElements = [seFont, seClient, seBorder]
   TextHeight = 13
-  inherited Panel2: TPanel
-    TabOrder = 3
-    inherited DBNavigator1: TDBNavigator
-      Hints.Strings = ()
-    end
-    inherited btnItem: TBitBtn
-      OnClick = btnItemClick
-    end
-    inherited btnOk: TBitBtn
-      OnClick = btnOkClick
-    end
+  inherited imFundo: TImage
+    Top = 203
+    Height = 191
+  end
+  inherited Panel1: TPanel
+    StyleElements = [seFont, seClient, seBorder]
   end
   inherited Panel3: TPanel
     Height = 136
     TabOrder = 1
+    StyleElements = [seFont, seClient, seBorder]
     ExplicitHeight = 136
     object Label1: TLabel
       Left = 24
@@ -159,6 +155,7 @@ inherited frmCompra: TfrmCompra
   end
   inherited Panel4: TPanel
     TabOrder = 2
+    StyleElements = [seFont, seClient, seBorder]
     object Label9: TLabel
       Left = 24
       Top = 16
@@ -247,8 +244,8 @@ inherited frmCompra: TfrmCompra
     end
   end
   inherited DBGrid1: TDBGrid
-    Top = 193
-    Height = 201
+    Top = 203
+    Height = 191
     DataSource = dsPadraoItem
     Columns = <
       item
@@ -293,8 +290,20 @@ inherited frmCompra: TfrmCompra
         Visible = True
       end>
   end
+  inherited Panel2: TPanel
+    TabOrder = 3
+    StyleElements = [seFont, seClient, seBorder]
+    inherited DBNavigator1: TDBNavigator
+      Hints.Strings = ()
+    end
+    inherited btnItem: TBitBtn
+      OnClick = btnItemClick
+    end
+    inherited btnOk: TBitBtn
+      OnClick = btnOkClick
+    end
+  end
   inherited qryPadrao: TFDQuery
-    Active = True
     UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
     UpdateOptions.FetchGeneratorsPoint = gpImmediate
     UpdateOptions.GeneratorName = 'GEN_ID_TBLCOMPRA'
@@ -318,7 +327,6 @@ inherited frmCompra: TfrmCompra
       FieldName = 'ID_COMPRA'
       Origin = 'ID_COMPRA'
       ProviderFlags = [pfInWhere, pfInKey]
-      ReadOnly = True
     end
     object qryPadraoID_FORNECEDOR: TIntegerField
       FieldName = 'ID_FORNECEDOR'
@@ -370,7 +378,6 @@ inherited frmCompra: TfrmCompra
     Top = 312
   end
   inherited qryPadraoItem: TFDQuery
-    Active = True
     IndexFieldNames = 'ID_COMPRA'
     AggregatesActive = True
     MasterFields = 'ID_COMPRA'
@@ -465,16 +472,15 @@ inherited frmCompra: TfrmCompra
     Top = 312
   end
   object qryProduto: TFDQuery
-    Active = True
     Connection = DM.Conexao
     SQL.Strings = (
-      'SELECT ID_PRODUTO,'
-      '       PRODUTO_DESCRICAO,'
+      'SELECT ID,'
+      '       DESCRICAO,'
       '       ESTOQUE,'
       '       ESTOQUE_MIN,'
       '       VL_CUSTO'
-      'FROM TBLPRODUTO'
-      'ORDER BY ID_PRODUTO')
+      'FROM PRODUTO'
+      'ORDER BY ID')
     Left = 456
     Top = 232
   end

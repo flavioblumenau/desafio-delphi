@@ -11,7 +11,7 @@ type
     oProduto: TProduto;
     constructor Create;
     destructor Destroy; override;
-    procedure Search(sNome: string);
+    procedure Search(id: Integer);
     procedure Load(oProduto: TProduto; iId: Integer);
     function Insert(oProduto: TProduto; out iId: Integer; out sErro: string): Boolean;
     function Update(oProduto: TProduto; out sErro: string): Boolean;
@@ -38,9 +38,10 @@ begin
   inherited;
 end;
 
-procedure TProdutoController.Search(sNome: string);
+procedure TProdutoController.Search(id: Integer);
 begin
-  dmProduto.Search(sNome);
+  // carrega dados do objeto
+  dmProduto.Search(id);
 end;
 
 procedure TProdutoController.Load(oProduto: TProduto; iId: Integer);

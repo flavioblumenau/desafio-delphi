@@ -1,10 +1,15 @@
 inherited frmPesquisaProduto: TfrmPesquisaProduto
   Caption = 'Pesquisa de Produtos'
+  ClientHeight = 426
   StyleElements = [seFont, seClient, seBorder]
-  ExplicitLeft = -179
+  ExplicitLeft = -124
+  ExplicitTop = -14
+  ExplicitHeight = 465
   TextHeight = 13
   inherited Panel1: TPanel
+    Height = 70
     StyleElements = [seFont, seClient, seBorder]
+    ExplicitHeight = 70
     inherited Label1: TLabel
       StyleElements = [seFont, seClient, seBorder]
     end
@@ -12,10 +17,28 @@ inherited frmPesquisaProduto: TfrmPesquisaProduto
       StyleElements = [seFont, seClient, seBorder]
     end
     inherited lblInicio: TLabel
+      Left = 392
       StyleElements = [seFont, seClient, seBorder]
+      ExplicitLeft = 392
     end
     inherited lblFim: TLabel
+      Left = 515
       StyleElements = [seFont, seClient, seBorder]
+      ExplicitLeft = 515
+    end
+    inherited btnPesquisar: TSpeedButton
+      Top = 10
+      ExplicitTop = 10
+    end
+    inherited btnImprimir: TSpeedButton
+      Left = 732
+      Top = 10
+      ExplicitLeft = 732
+      ExplicitTop = 10
+    end
+    inherited BSelecionar: TSpeedButton
+      Top = 10
+      ExplicitTop = 10
     end
     inherited cbChavePesquisa: TComboBox
       StyleElements = [seFont, seClient, seBorder]
@@ -31,13 +54,23 @@ inherited frmPesquisaProduto: TfrmPesquisaProduto
       StyleElements = [seFont, seClient, seBorder]
     end
     inherited edtInicio: TMaskEdit
+      Left = 392
+      Width = 114
       StyleElements = [seFont, seClient, seBorder]
+      ExplicitLeft = 392
+      ExplicitWidth = 114
     end
     inherited edtFim: TMaskEdit
+      Left = 515
+      Width = 105
       StyleElements = [seFont, seClient, seBorder]
+      ExplicitLeft = 515
+      ExplicitWidth = 105
     end
   end
   inherited DBGrid1: TDBGrid
+    Top = 70
+    Height = 291
     Columns = <
       item
         Expanded = False
@@ -47,7 +80,7 @@ inherited frmPesquisaProduto: TfrmPesquisaProduto
       item
         Expanded = False
         FieldName = 'PRODUTO_DESCRICAO'
-        Width = 300
+        Width = 192
         Visible = True
       end
       item
@@ -58,25 +91,21 @@ inherited frmPesquisaProduto: TfrmPesquisaProduto
       item
         Expanded = False
         FieldName = 'VL_VENDA'
-        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'ESTOQUE'
-        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'ESTOQUE_MIN'
-        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'UNIDADE'
-        Width = 64
         Visible = True
       end
       item
@@ -93,6 +122,7 @@ inherited frmPesquisaProduto: TfrmPesquisaProduto
       end>
   end
   inherited Panel2: TPanel
+    Top = 361
     StyleElements = [seFont, seClient, seBorder]
   end
   inherited qryPesquisaPadrao: TFDQuery

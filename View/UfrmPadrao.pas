@@ -8,7 +8,7 @@ uses
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
   FireDAC.Comp.Client, Vcl.Buttons, Vcl.DBCtrls, Vcl.Controls, Vcl.ExtCtrls,
-  Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+  Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, UObjetoTelaUtil;
 
 
 type
@@ -24,7 +24,6 @@ type
     BEditar: TSpeedButton;
     BGravar: TSpeedButton;
     BCancelar: TSpeedButton;
-    BAtualizar: TSpeedButton;
     BPesquisar: TSpeedButton;
     BSair: TSpeedButton;
     procedure trataBotoes();
@@ -35,12 +34,12 @@ type
     procedure BDeletarClick(Sender: TObject);
     procedure BSairClick(Sender: TObject);
     procedure BPesquisarClick(Sender: TObject);
-    procedure BAtualizarClick(Sender: TObject);
     procedure BCancelarClick(Sender: TObject);
     procedure BGravarClick(Sender: TObject);
     procedure BEditarClick(Sender: TObject);
   private
     { Private declarations }
+    ObjetoTelaUtil: TTelaUtils;
     procedure abrelogin;
   public
     { Public declarations }
@@ -84,6 +83,8 @@ begin
   imFundo.Picture.LoadFromFile(ExtractFilePath(Application.ExeName)+ '../Imagens/gradient.bmp');
   imFundo.Stretch := true;
   imFundo.SendToBack;
+  ObjetoTelaUtil := TTelaUtils.Create;
+  ObjetoTelaUtil.checkTransacao;
 end;
 
 procedure TfrmPadrao.FormKeyPress(Sender: TObject; var Key: Char);
@@ -102,20 +103,12 @@ begin
   close;
 end;
 
-procedure TfrmPadrao.BAtualizarClick(Sender: TObject);
-begin
-  // Atualiza os registros
-  trataBotoes;
-  qryPadrao.Refresh;
-  MessageBox(Handle, 'Registro atualizados com sucesso!', 'Atualizar Registros',
-  MB_ICONINFORMATION + MB_OK);
-end;
-
 procedure TfrmPadrao.BCancelarClick(Sender: TObject);
 begin
   // Cancela a ação
   trataBotoes;
   qryPadrao.Cancel;
+  ObjetoTelaUtil.cancelaTransacao;
   MessageBox(Handle, 'Ação cancelada pelo usuário!', 'Cancelar Ação',
   MB_ICONINFORMATION + MB_OK);
 end;
@@ -129,6 +122,7 @@ begin
   MB_ICONQUESTION + MB_YESNO) = mrYes then
    begin
      qryPadrao.Delete;
+     ObjetoTelaUtil.salvaTransacao;
      MessageBox(Handle, 'Registro deletado com sucesso!', 'Deletar Registro',
      MB_ICONINFORMATION + MB_OK);
    end
@@ -145,17 +139,7 @@ begin
   // Abre o registro para edição
   trataBotoes;
 
-  if MessageBox(Handle, 'Deseja editar esse registro?', 'Editar Registro',
-  MB_ICONQUESTION + MB_YESNO) = mrYes then
-   begin
-     qryPadrao.Edit;
-   end
-
-  else
-   begin
-     trataBotoes;
-     Abort;
-   end;
+  qryPadrao.Edit;
 end;
 
 procedure TfrmPadrao.BGravarClick(Sender: TObject);
@@ -164,6 +148,7 @@ begin
   trataBotoes;
   qryPadrao.Post;
   qryPadrao.Refresh;
+  ObjetoTelaUtil.salvaTransacao;
   MessageBox(Handle, 'Registro salvo com sucesso!', 'Gravar Registro',
   MB_ICONINFORMATION + MB_OK);
 end;
@@ -175,7 +160,6 @@ begin
   bDeletar.Enabled := not bDeletar.Enabled;
   bEditar.Enabled := not bEditar.Enabled;
   bGravar.Enabled := not bGravar.Enabled;
-  bAtualizar.Enabled := not bAtualizar.Enabled;
 end;
 
 end.

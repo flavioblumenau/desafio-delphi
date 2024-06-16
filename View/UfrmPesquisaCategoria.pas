@@ -1,4 +1,4 @@
-unit UfrmPesquisaUsuario;
+unit UfrmPesquisaCategoria;
 
 interface
 
@@ -43,13 +43,13 @@ procedure TfrmPesquisaUsuario.btnPesquisarClick(Sender: TObject);
 begin
   inherited;
 
-  qryPesquisaPadrao.SQL.Add('SELECT ID_USUARIO, NOME, TIPO, CADASTRO FROM TBLUSUARIO');
+  qryPesquisaPadrao.SQL.Add('SELECT ID, NOME, TIPO FROM CATEGORIAS');
 
   case cbChavePesquisa.ItemIndex of
    0 : // Pesquisa por Código
     begin
-     qryPesquisaPadrao.SQL.Add('WHERE ID_USUARIO = :pId_Usuario');
-     qryPesquisaPadrao.ParamByName('pId_Usuario').AsString := edtNome.Text;
+     qryPesquisaPadrao.SQL.Add('WHERE ID = :pId');
+     qryPesquisaPadrao.ParamByName('pId').AsString := edtNome.Text;
     end;
 
    1 : // Pesquisa por Nome
@@ -58,22 +58,10 @@ begin
      qryPesquisaPadrao.ParamByName('pNome').AsString := '%' + edtNome.Text + '%';
     end;
 
-   2 : // Pesquisa por Data de Cadastro
-    begin
-     qryPesquisaPadrao.SQL.Add('WHERE CADASTRO = :pCadastro');
-     qryPesquisaPadrao.ParamByName('pCadastro').AsDate := StrToDate(edtInicio.Text);
-    end;
 
-   3 : // Pesquisa por Período
+   2 : // Pesquisa por Todos os registros
     begin
-     qryPesquisaPadrao.SQL.Add('WHERE CADASTRO BETWEEN :pInicio AND :pFim');
-     qryPesquisaPadrao.ParamByName('pInicio').AsDate := StrToDate(edtInicio.Text);
-     qryPesquisaPadrao.ParamByName('pFim').AsDate := StrToDate(edtFim.Text);
-    end;
-
-   4 : // Pesquisa por Todos os registros
-    begin
-     qryPesquisaPadrao.SQL.Add('ORDER BY ID_USUARIO');
+     qryPesquisaPadrao.SQL.Add('ORDER BY ID');
     end;
   end;
 
