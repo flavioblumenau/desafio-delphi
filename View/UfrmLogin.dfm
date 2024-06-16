@@ -3,8 +3,8 @@ object frmLogin: TfrmLogin
   Top = 0
   BorderStyle = bsToolWindow
   Caption = 'ERP EXEMPLO'
-  ClientHeight = 338
-  ClientWidth = 588
+  ClientHeight = 331
+  ClientWidth = 367
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,14 +17,14 @@ object frmLogin: TfrmLogin
   object imFundo: TImage
     Left = 0
     Top = 67
-    Width = 588
-    Height = 214
+    Width = 367
+    Height = 207
     Align = alClient
-    ExplicitTop = 61
+    ExplicitTop = 59
   end
   object Label1: TLabel
-    Left = 144
-    Top = 104
+    Left = 48
+    Top = 96
     Width = 69
     Height = 25
     Caption = 'Usu'#225'rio'
@@ -36,8 +36,8 @@ object frmLogin: TfrmLogin
     ParentFont = False
   end
   object Label2: TLabel
-    Left = 144
-    Top = 173
+    Left = 48
+    Top = 165
     Width = 54
     Height = 25
     Caption = 'Senha'
@@ -51,14 +51,15 @@ object frmLogin: TfrmLogin
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 588
+    Width = 367
     Height = 67
     Align = alTop
     Color = 13298927
     ParentBackground = False
     TabOrder = 0
+    ExplicitWidth = 588
     object BLogar: TSpeedButton
-      Left = 194
+      Left = 66
       Top = 10
       Width = 92
       Height = 45
@@ -172,7 +173,7 @@ object frmLogin: TfrmLogin
       OnClick = BLogarClick
     end
     object BCancelar: TSpeedButton
-      Left = 292
+      Left = 164
       Top = 10
       Width = 108
       Height = 45
@@ -288,17 +289,19 @@ object frmLogin: TfrmLogin
   end
   object Panel2: TPanel
     Left = 0
-    Top = 281
-    Width = 588
+    Top = 274
+    Width = 367
     Height = 57
     Align = alBottom
     Color = 13298927
     ParentBackground = False
     TabOrder = 1
+    ExplicitTop = 281
+    ExplicitWidth = 588
   end
   object EUsuario: TEdit
-    Left = 144
-    Top = 134
+    Left = 48
+    Top = 126
     Width = 266
     Height = 31
     AutoSize = False
@@ -313,8 +316,8 @@ object frmLogin: TfrmLogin
     OnKeyUp = EUsuarioKeyUp
   end
   object ESenha: TEdit
-    Left = 144
-    Top = 204
+    Left = 48
+    Top = 196
     Width = 266
     Height = 33
     Font.Charset = DEFAULT_CHARSET
@@ -325,7 +328,6 @@ object frmLogin: TfrmLogin
     ParentFont = False
     PasswordChar = '*'
     TabOrder = 3
-    OnKeyUp = ESenhaKeyUp
   end
   object qryPadrao: TFDQuery
     Connection = DM.Conexao

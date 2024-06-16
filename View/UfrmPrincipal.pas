@@ -12,7 +12,6 @@ type
   TfrmPrincipal = class(TForm)
     Panel1: TPanel;
     BProdutos: TSpeedButton;
-    BCategorias: TSpeedButton;
     BCompras: TSpeedButton;
     BVendas: TSpeedButton;
     BSair: TSpeedButton;
@@ -31,6 +30,7 @@ type
     MovimentacaoRelatorio1: TMenuItem;
     procedure AbreTelaProduto;
     procedure AbreTelaCompra;
+    procedure AbreTelaVenda;
     procedure Timer1Timer(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure BSairClick(Sender: TObject);
@@ -118,12 +118,11 @@ end;
 
 procedure TfrmPrincipal.AbreTelaCompra;
 var
-  ObjFrmCompra : TfrmCompra;
+  ObjFrmCompra : TfrmMovimentacao;
 begin
-  ObjFrmCompra := TfrmCompra.Create(nil);
-
+  ObjFrmCompra := TfrmMovimentacao.Create(nil);
   try
-   ObjFrmCompra.ShowModal;
+   ObjFrmCompra.AbreTelaCompras;
   finally
    ObjFrmCompra.Free;
   end;
@@ -139,6 +138,18 @@ begin
     ObjFrmProduto.ShowModal;
   finally
     ObjFrmProduto.Free;
+  end;
+end;
+
+procedure TfrmPrincipal.AbreTelaVenda;
+var
+  ObjFrmCompra : TfrmMovimentacao;
+begin
+  ObjFrmCompra := TfrmMovimentacao.Create(nil);
+  try
+   ObjFrmCompra.AbreTelaVendas;
+  finally
+   ObjFrmCompra.Free;
   end;
 end;
 

@@ -50,11 +50,8 @@ Coordinates=10,10,162,322
 Coordinates=203,335,157,36
 
 []
-Coordinates=52,225,56,36
-Visible=True
-
-[BCategorias]
 Coordinates=165,342,96,36
+Visible=True
 
 [categoriasProd1]
 Coordinates=0,149,99,36

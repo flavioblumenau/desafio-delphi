@@ -99,10 +99,10 @@ inherited frmProduto: TfrmProduto
   end
   inherited imFundo: TImage
     Height = 228
-    ExplicitLeft = 0
-    ExplicitTop = 69
+    ExplicitLeft = 88
+    ExplicitTop = 104
     ExplicitWidth = 827
-    ExplicitHeight = 189
+    ExplicitHeight = 228
   end
   object BCategoria: TSpeedButton [11]
     Left = 253
@@ -326,6 +326,7 @@ inherited frmProduto: TfrmProduto
     object qryPadraoID_CATEGORIA: TIntegerField
       FieldName = 'ID_CATEGORIA'
       Origin = 'ID_CATEGORIA'
+      OnChange = qryPadraoID_CATEGORIAChange
     end
     object qryPadraoNOME: TStringField
       AutoGenerateValue = arDefault

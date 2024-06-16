@@ -47,7 +47,6 @@ type
     dsCategoria: TDataSource;
     QryCategoriaID: TIntegerField;
     QryCategoriaNOME: TStringField;
-    procedure btnNovoClick(Sender: TObject);
     procedure btnPesquisarClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure BCategoriaClick(Sender: TObject);
@@ -57,6 +56,7 @@ type
     procedure BEditarClick(Sender: TObject);
     procedure BNovoClick(Sender: TObject);
     procedure qryPadraoAfterScroll(DataSet: TDataSet);
+    procedure qryPadraoID_CATEGORIAChange(Sender: TField);
   private
     { Private declarations }
     procedure Searchs;
@@ -119,13 +119,6 @@ procedure TfrmProduto.BPesquisarClick(Sender: TObject);
 begin
   inherited;
   Searchs;
-end;
-
-procedure TfrmProduto.btnNovoClick(Sender: TObject);
-begin
-  inherited;
-  edtCadastro.Text := DateToStr(Now);
-  edtIDProduto.SetFocus;
 end;
 
 procedure TfrmProduto.btnPesquisarClick(Sender: TObject);
@@ -236,13 +229,24 @@ begin
   qryPadrao.Open();
   if qryPadrao.state in [dsEdit] then
     qryPadrao.Cancel;
+
   qryPadrao.Insert;
   qryPadraoCADASTRO.AsDateTime := NOW;
+  edtIDProduto.SetFocus;
 end;
 
 procedure TfrmProduto.qryPadraoAfterScroll(DataSet: TDataSet);
 begin
   inherited;
+  QryCategoria.Close;
+  QryCategoria.ParamByName('Id').AsInteger := qryPadraoID_CATEGORIA.AsInteger;
+  QryCategoria.Open;
+end;
+
+procedure TfrmProduto.qryPadraoID_CATEGORIAChange(Sender: TField);
+begin
+  inherited;
+  // atualizar descricao da categoria digitada
   QryCategoria.Close;
   QryCategoria.ParamByName('Id').AsInteger := qryPadraoID_CATEGORIA.AsInteger;
   QryCategoria.Open;

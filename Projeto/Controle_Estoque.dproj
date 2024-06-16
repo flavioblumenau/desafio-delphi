@@ -124,7 +124,7 @@
             <Form>frmPadraoMovimento</Form>
         </DCCReference>
         <DCCReference Include="..\View\UfrmCompra.pas">
-            <Form>frmCompra</Form>
+            <Form>frmMovimentacao</Form>
         </DCCReference>
         <DCCReference Include="..\Model\Produto.pas"/>
         <DCCReference Include="..\Dao\uDM.pas">
@@ -144,6 +144,13 @@
         </DCCReference>
         <DCCReference Include="..\Controller\UObjetoTelaUtil.pas"/>
         <DCCReference Include="..\Controller\UObjetoBuscaProduto.pas"/>
+        <DCCReference Include="..\Dao\udmmovimentacao.pas">
+            <Form>dmMovimentacao</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\Model\Movimentacao.pas"/>
+        <DCCReference Include="..\Controller\uMovimentacaoController.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

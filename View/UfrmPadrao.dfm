@@ -34,7 +34,7 @@ object frmPadrao: TfrmPadrao
     Width = 827
     Height = 67
     Align = alTop
-    Color = 13298927
+    Color = clSkyBlue
     ParentBackground = False
     TabOrder = 0
     object BNovo: TSpeedButton
@@ -794,7 +794,7 @@ object frmPadrao: TfrmPadrao
     Width = 827
     Height = 57
     Align = alBottom
-    Color = 13298927
+    Color = 16311249
     ParentBackground = False
     TabOrder = 1
     object DBNavigator1: TDBNavigator

@@ -21,7 +21,7 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
     Width = 936
     Height = 65
     Align = alTop
-    Color = 13298927
+    Color = clSkyBlue
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -487,10 +487,9 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
     Width = 936
     Height = 65
     Align = alBottom
-    Color = 13298927
+    Color = 16311249
     ParentBackground = False
     TabOrder = 2
-    ExplicitTop = 421
   end
   object qryPesquisaPadrao: TFDQuery
     Connection = DM.Conexao
