@@ -2078,11 +2078,9 @@ object frmPrincipal: TfrmPrincipal
     end
     object Relatrios1: TMenuItem
       Caption = 'Relat'#243'rios'
-      object ListaUsurios1: TMenuItem
-        Caption = 'Lista Usu'#225'rios'
-      end
       object MovimentacaoRelatorio1: TMenuItem
         Caption = 'Movimenta'#231#227'o de Estoque'
+        OnClick = MovimentacaoRelatorio1Click
       end
     end
   end

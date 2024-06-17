@@ -17,11 +17,7 @@ type
     cbChavePesquisa: TComboBox;
     Label1: TLabel;
     edtNome: TEdit;
-    edtInicio: TMaskEdit;
-    edtFim: TMaskEdit;
     lblNome: TLabel;
-    lblInicio: TLabel;
-    lblFim: TLabel;
     DBGrid1: TDBGrid;
     Panel2: TPanel;
     btnPesquisar: TSpeedButton;
@@ -32,7 +28,6 @@ type
     frxReport: TfrxReport;
     frxDB: TfrxDBDataset;
     procedure btnPesquisarClick(Sender: TObject);
-    procedure cbChavePesquisaChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -87,62 +82,6 @@ begin
   else Abort;
 end;
 
-procedure TfrmPesquisaPadrao.cbChavePesquisaChange(Sender: TObject);
-begin
-  edtNome.Text := '';
-  edtInicio.Text := '';
-  edtFim.Text := '';
-
-  case cbChavePesquisa.ItemIndex of
-   0 :
-    begin
-     edtNome.Visible := True;
-     edtInicio.Visible := False;
-     edtFim.Visible := False;
-
-     lblNome.Caption := 'Código';
-    end;
-
-   1 :
-    begin
-     edtNome.Visible := True;
-     edtInicio.Visible := False;
-     edtFim.Visible := False;
-     lblNome.Caption := 'Nome';
-    end;
-
-   2 :
-    begin
-     edtNome.Visible := False;
-     edtInicio.Visible := True;
-     edtFim.Visible := False;
-
-     lblInicio.Caption := 'Data';
-    end;
-
-   3 :
-    begin
-     edtNome.Visible := False;
-     edtInicio.Visible := True;
-     edtFim.Visible := True;
-
-     lblInicio.Caption := 'Data Inicial';
-     lblFim.Caption := 'Data Final';
-    end;
-
-   4 :
-    begin
-     edtNome.Visible := False;
-     edtInicio.Visible := False;
-     edtFim.Visible := False;
-    end;
-  end;
-
-  lblNome.Visible := edtNome.Visible;
-  lblInicio.Visible := edtInicio.Visible;
-  lblFim.Visible := edtFim.Visible;
-end;
-
 procedure TfrmPesquisaPadrao.DBGrid1DblClick(Sender: TObject);
 begin
   BSelecionar.Click;
@@ -157,7 +96,7 @@ end;
 procedure TfrmPesquisaPadrao.FormCreate(Sender: TObject);
 begin
   cbChavePesquisa.ItemIndex := 0;
-  cbChavePesquisaChange(nil);
+
 
   qryPesquisaPadrao.Open;
 end;

@@ -7,29 +7,23 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, UfrmPadraoMovimento, Data.DB,
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
-  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp. DataSet, FireDAC.Comp.Client,
   Vcl.Grids, Vcl.DBGrids, Vcl.DBCtrls, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
   Vcl.Mask, uDM, Vcl.Imaging.jpeg, frxSmartMemo, frxClass, frCoreClasses,
-  frxDBSet;
+  frxDBSet, Movimentacao, Vcl.NumberBox, Vcl.WinXCalendars;
 
 type
   TfrmMovimentacao = class(TfrmPadraoMovimento)
     Label1: TLabel;
-    edtIDCompra: TDBEdit;
     Label2: TLabel;
     LbTotal: TLabel;
     Label4: TLabel;
-    edtCadastro: TDBEdit;
     Label5: TLabel;
-    edtNomeFornecedor: TDBEdit;
     LbValorUnit: TLabel;
     qryProduto: TFDQuery;
-    edtproduto: TDBEdit;
     Label7: TLabel;
-    dbeQtde: TDBEdit;
     Image1: TImage;
     Label6: TLabel;
-    edtTipo: TDBComboBox;
     qryPadraoID: TIntegerField;
     qryPadraoDATA: TSQLTimeStampField;
     qryPadraoTIPO: TStringField;
@@ -62,28 +56,39 @@ type
     QryRelatorioUNIDADE: TStringField;
     QryRelatorioCADASTRO: TDateField;
     QryRelatorioID_CATEGORIA: TIntegerField;
-    procedure edtIDProdutoExit(Sender: TObject);
+    qryPadraoDESCRICAO: TStringField;
+    EId: TEdit;
+    CBTipo: TComboBox;
+    cpData: TCalendarPicker;
+    EIdProduto: TEdit;
+    ENomeProduto: TEdit;
+    EQuantidade: TNumberBox;
     procedure BNovoClick(Sender: TObject);
     procedure BProdutoClick(Sender: TObject);
     procedure BEditarClick(Sender: TObject);
-    procedure qryPadraoQUANTIDADEChange(Sender: TField);
     procedure BDeletarClick(Sender: TObject);
     procedure BGravarClick(Sender: TObject);
     procedure BCancelarClick(Sender: TObject);
-    procedure qryPadraoAfterScroll(DataSet: TDataSet);
-    procedure FormCreate(Sender: TObject);
     procedure DBGrid1TitleClick(Column: TColumn);
     procedure btnImprimirClick(Sender: TObject);
+    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure FormCreate(Sender: TObject);
+    procedure EQuantidadeChange(Sender: TObject);
+    procedure EIdProdutoExit(Sender: TObject);
   private
     { Private declarations }
     FTipo: String;
+    oMovimento: TMovimento;
     procedure procuraProduto();
     procedure apagar();
     procedure salvar();
+    procedure LimparTela();
   public
     { Public declarations }
     procedure AbreTelaCompras;
     procedure AbreTelaVendas;
+    procedure AbreRelatorio;
   end;
 
 var
@@ -93,8 +98,7 @@ implementation
 
 {$R *.dfm}
 
-uses uProdutoController, UObjetoBuscaProduto, uMovimentacaoController,
-  Movimentacao;
+uses uProdutoController, UObjetoBuscaProduto, uMovimentacaoController;
 
 procedure TfrmMovimentacao.BCancelarClick(Sender: TObject);
 begin
@@ -104,7 +108,13 @@ end;
 
 procedure TfrmMovimentacao.BDeletarClick(Sender: TObject);
 begin
-  apagar;
+  // para não dar problemas na quantidade de estoque optou-se por  não deixar apagar dados
+  // apagar;
+end;
+
+procedure TfrmMovimentacao.AbreRelatorio;
+begin
+  btnImprimirClick(nil);
 end;
 
 procedure TfrmMovimentacao.AbreTelaCompras;
@@ -139,7 +149,8 @@ end;
 procedure TfrmMovimentacao.BEditarClick(Sender: TObject);
 begin
   inherited;
-  //
+  // Para não deixar dar problema na quantidade de Estoque preferiu-se por não deixar editar
+  // as informações que foram lançadas nessa etapa
 end;
 
 procedure TfrmMovimentacao.BGravarClick(Sender: TObject);
@@ -151,7 +162,6 @@ procedure TfrmMovimentacao.BNovoClick(Sender: TObject);
 var
   Proximo : Integer;
 begin
-  inherited;
 
   dm.Transacao.CommitRetaining;
 
@@ -163,11 +173,17 @@ begin
   if qryPadrao.state in [dsEdit] then
     qryPadrao.Cancel;
 
-  qryPadrao.Insert;
-  qryPadraoID.AsInteger    := Proximo;
-  qryPadraoDATA.AsDateTime := NOW;
-  qryPadraoTIPO.AsString   := FTipo;
-  edtProduto.SetFocus;
+  oMovimento  := TMovimento.create;
+  oMovimento.id    := Proximo;
+  oMovimento.AData := NOW;
+  oMovimento.tipo  := FTipo;
+
+  LimparTela;
+
+  eIdProduto.SetFocus;
+
+  BNovo.Enabled := false;
+  BGravar.Enabled := true;
 end;
 
 procedure TfrmMovimentacao.BProdutoClick(Sender: TObject);
@@ -197,6 +213,37 @@ begin
 
 end;
 
+procedure TfrmMovimentacao.DBGrid1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+var
+  lLinha: integer;
+begin
+  if Rect.Top = TStringGrid(DBGrid1).CellRect(0, TStringGrid(DBGrid1).Row).Top then
+  begin
+    DBGrid1.Canvas.FillRect(Rect);
+    DBGrid1.Canvas.Font.Color := clWhite;
+    DBGrid1.Canvas.Brush.Color := clHighlight;
+    if qryPadraoTIPO.AsString='E' then
+      Dbgrid1.Canvas.Font.Color:= clNavy
+    else
+      Dbgrid1.Canvas.Font.Color:= clRed;
+
+    DBGrid1.DefaultDrawDataCell(Rect, Column.Field, State)
+  end;
+  exit;
+  // obtém o número do registro (linha)
+  lLinha := DBGrid1.DataSource.DataSet.RecNo;
+
+  // verifica se o número da linha é par ou ímpar, aplicando as cores
+  if Odd(lLinha) then
+    DBGrid1.Canvas.Brush.Color := clMenu
+  else
+    DBGrid1.Canvas.Brush.Color := clMoneyGreen;
+
+  // pinta a linha
+  DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
+end;
+
 procedure TfrmMovimentacao.DBGrid1TitleClick(Column: TColumn);
 var
   campo:string;
@@ -215,24 +262,53 @@ begin
   column.Font.color:=clblue; // COLOCAR A COLUNA NA COR DESEJADA {Busca recursiva
 end;
 
-procedure TfrmMovimentacao.edtIDProdutoExit(Sender: TObject);
+procedure TfrmMovimentacao.EIdProdutoExit(Sender: TObject);
 begin
   inherited;
-  if qryPadrao.State in [dsbrowse] then exit;
-  if (qryPadraoPRODUTO.AsInteger > 0) then
+  if (EIdProduto.Text <> '') then
+  begin
     qryProduto.Close();
-    qryProduto.ParamByName('pid').AsInteger :=  qryPadrao.FieldByName('PRODUTO').AsInteger;
+    qryProduto.ParamByName('pid').AsString :=  EIdProduto.Text;
     qryProduto.Open();
     if (qryProduto.FieldByName('Id').asInteger> 0) then
      begin
-      qryPadraoQUANTIDADE.AsInteger := 1;
+      EQuantidade.ValueInt := 1;
+      ENomeProduto.Text :=qryProduto.FieldByName('DESCRICAO').AsString;
      end;
+  end;
+end;
+
+procedure TfrmMovimentacao.EQuantidadeChange(Sender: TObject);
+begin
+  inherited;
+
+  oMovimento.Quantidade := EQuantidade.ValueInt;
+  if oMovimento.Tipo = 'E' then
+    oMovimento.ValorUnit := qryProduto.FieldByName('vl_custo').AsFloat
+  else
+    oMovimento.ValorUnit:= qryProduto.FieldByName('vl_venda').AsFloat;
+
+  LbTotal.Caption := 'VALOR TOTAL: R$ ' + FormatFloat(',0.00', oMovimento.Quantidade * oMovimento.ValorUnit);
+  LbValorUnit.Caption := 'VALOR: R$ ' +  FormatFloat(',0.00', oMovimento.ValorUnit);
+
+  oMovimento.ValorTotal := oMovimento.Quantidade * oMovimento.ValorUnit;
 end;
 
 procedure TfrmMovimentacao.FormCreate(Sender: TObject);
 begin
   inherited;
-  //
+  oMovimento  := TMovimento.create;
+end;
+
+procedure TfrmMovimentacao.LimparTela();
+begin
+  EId.Text := IntToStr(oMovimento.id);
+  cpData.Date := oMovimento.AData;
+  EIdProduto.Clear;
+  ENomeProduto.Clear;
+  EQuantidade.Clear;
+  if FTipo = 'E' then CBTipo.ItemIndex := 0;
+  if FTipo = 'S' then CBTipo.ItemIndex := 1;
 end;
 
 procedure TfrmMovimentacao.procuraProduto;
@@ -249,9 +325,8 @@ begin
 
     if id > 0 then
     begin
-      qryPadrao.Edit;
-      qryPadraoPRODUTO.AsInteger := id;
-      edtIDProdutoExit(NIL);
+      EIdProduto.Text := IntToStr(id);
+      EIdProdutoExit(NIL);
     end;
 
   finally
@@ -260,32 +335,10 @@ begin
   end;
 end;
 
-procedure TfrmMovimentacao.qryPadraoAfterScroll(DataSet: TDataSet);
-begin
-  inherited;
-  edtIDProdutoExit(NIL);
-end;
-
-procedure TfrmMovimentacao.qryPadraoQUANTIDADEChange(Sender: TField);
-begin
-
-  if qryPadrao.State in [dsBrowse] then exit;
-
-  if qryPadraoTIPO.AsString='E' then
-    qryPadraoVALOR.AsFloat := qryProduto.FieldByName('vl_custo').AsFloat
-  else
-    qryPadraoVALOR.AsFloat := qryProduto.FieldByName('vl_venda').AsFloat;
-
-  LbTotal.Caption := 'VALOR TOTAL: R$ ' + FormatFloat(',0.00', qryPadraoQUANTIDADE.AsInteger * qryPadraoVALOR.AsFloat);
-  LbValorUnit.Caption := 'VALOR: R$ ' +  FormatFloat(',0.00', qryPadraoVALOR.AsFloat);
-  qryPadraoVALOR_TOTAL.AsFloat := qryPadraoVALOR.AsFloat;
-  qryPadraoVALOR_TOTAL.AsFloat := qryPadraoQUANTIDADE.AsInteger * qryPadraoVALOR.AsFloat;
-end;
-
 procedure TfrmMovimentacao.salvar;
 var
   oController: TMovimentoController;
-  oMovimento: TMovimento;
+
   iId: integer;
   sErro: String;
 
@@ -294,21 +347,21 @@ var
     with oMovimento do
       begin
         id := iId;
-        Produto := qryPadraoPRODUTO.AsInteger;
-        ValorUnit := qryPadraoVALOR.AsFloat;
-        ValorTotal := qryPadraoVALOR_TOTAL.AsFloat;
-        Quantidade := qryPadraoQUANTIDADE.AsInteger;
-        Tipo := qryPadraoTIPO.AsString;
-        AData := qryPadraoDATA.AsDateTime;
+        Produto := StrToInt(EIdProduto.Text);
+//        ValorUnit := oMovimento.ValorUnit;
+//        ValorTotal := oMovimento.ValorTotal;
+        Quantidade := EQuantidade.ValueInt;
+        Tipo := FTipo;
+        AData := cpData.Date;
       end;
   end;
 
 begin
 
   oController := TMovimentoController.Create;
-  oMovimento  := TMovimento.create;
+
   try
-    iId := qryPadraoID.AsInteger;
+    iId := StrToInt(EId.Text);
     oController.Load(oMovimento, iId);
     if oMovimento.id = 0 then
     begin
@@ -327,6 +380,11 @@ begin
     FreeAndnil(oMovimento);
     FreeAndNil(oController);
   end;
+  qryPadrao.refresh;
+  MessageBox(Handle, 'Registro salvo com sucesso!', 'Gravar Registro',
+    MB_ICONINFORMATION + MB_OK);
+
+  trataBotoes;
 
 end;
 

@@ -29,9 +29,10 @@ type
   private
     { Private declarations }
      tentativas : Smallint;
-    function loginValido(const usuario, senha: String): Boolean;
+
   public
     { Public declarations }
+    function loginValido(const usuario, senha: String): Boolean;
   end;
 
 var
@@ -103,7 +104,7 @@ end;
 
 function TFrmLogin.loginValido(const usuario, senha : String) : Boolean;
 begin
-    with DM.Conexao, qryPadrao do
+    with DM.Conexao, FrmLogin.qrypadrao do
     begin
       if not Connected then //Caso o componente ConLOGIN não esteja conectado ao BD
         Connected := True;

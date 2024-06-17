@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2024/06/16 23:59:41.290,=C:\delphi2\desafio-delphi\Projeto\Test\TestUfrmLogin.pas</Transaction>
+    <Transaction>2024/06/16 23:59:41.764,=C:\delphi2\desafio-delphi\View\UfrmLogin.pas</Transaction>
+    <Transaction>2024/06/17 00:02:01.033,=C:\delphi2\desafio-delphi\Dao\uDM.pas</Transaction>
+    <Transaction>2024/06/17 00:26:05.923,=C:\delphi2\desafio-delphi\Projeto\Test\Testudmmovimentacao.pas</Transaction>
+    <Transaction>2024/06/17 00:26:06.218,=C:\delphi2\desafio-delphi\Dao\udmmovimentacao.pas</Transaction>
+    <Transaction>2024/06/17 00:26:52.334,=C:\delphi2\desafio-delphi\Model\Movimentacao.pas</Transaction>
+    <Transaction>2024/06/17 00:27:13.648,=C:\delphi2\desafio-delphi\Controller\UObjetoTelaUtil.pas</Transaction>
+  </Transactions>
+</BorlandProject>

@@ -75,25 +75,13 @@ begin
      qryPesquisaPadrao.ParamByName('pDescricao').AsString := '%' + edtNome.Text + '%';
     end;
 
-   2 : // Pesquisa por Data de Cadastro
-    begin
-     qryPesquisaPadrao.SQL.Add('WHERE A.CADASTRO = :pCadastro');
-     qryPesquisaPadrao.ParamByName('pCadastro').AsDate := StrToDate(edtInicio.Text);
-    end;
 
-   3 : // Pesquisa por Período
-    begin
-     qryPesquisaPadrao.SQL.Add('WHERE A.CADASTRO BETWEEN :pInicio AND :pFim');
-     qryPesquisaPadrao.ParamByName('pInicio').AsDate := StrToDate(edtInicio.Text);
-     qryPesquisaPadrao.ParamByName('pFim').AsDate := StrToDate(edtFim.Text);
-    end;
-
-   4 : // Pesquisa por Todos os registros
+    3 : // Pesquisa por Todos os registros
     begin
      qryPesquisaPadrao.SQL.Add('ORDER BY A.ID');
     end;
 
-    5 : // Pesquisa pela categoria
+    2 : // Pesquisa pela categoria
     begin
      qryPesquisaPadrao.SQL.Add('WHERE A.ID_CATEGORIA = :pId');
      qryPesquisaPadrao.ParamByName('pId').AsString := edtNome.Text;

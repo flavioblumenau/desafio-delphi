@@ -13,17 +13,8 @@ inherited frmPesquisaProduto: TfrmPesquisaProduto
       StyleElements = [seFont, seClient, seBorder]
     end
     inherited lblNome: TLabel
+      Font.Style = [fsUnderline]
       StyleElements = [seFont, seClient, seBorder]
-    end
-    inherited lblInicio: TLabel
-      Left = 392
-      StyleElements = [seFont, seClient, seBorder]
-      ExplicitLeft = 392
-    end
-    inherited lblFim: TLabel
-      Left = 515
-      StyleElements = [seFont, seClient, seBorder]
-      ExplicitLeft = 515
     end
     inherited btnPesquisar: TSpeedButton
       Top = 10
@@ -48,27 +39,11 @@ inherited frmPesquisaProduto: TfrmPesquisaProduto
       Items.Strings = (
         'C'#211'DIGO'
         'DESCRI'#199#195'O'
-        'CADASTRO'
-        'PER'#205'ODO'
-        'TODOS'
-        'FORNECEDOR')
+        'CATEGORIA'
+        'TODOS')
     end
     inherited edtNome: TEdit
       StyleElements = [seFont, seClient, seBorder]
-    end
-    inherited edtInicio: TMaskEdit
-      Left = 392
-      Width = 114
-      StyleElements = [seFont, seClient, seBorder]
-      ExplicitLeft = 392
-      ExplicitWidth = 114
-    end
-    inherited edtFim: TMaskEdit
-      Left = 515
-      Width = 105
-      StyleElements = [seFont, seClient, seBorder]
-      ExplicitLeft = 515
-      ExplicitWidth = 105
     end
   end
   inherited DBGrid1: TDBGrid

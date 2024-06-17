@@ -1,15 +1,15 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
-        <ProjectGuid>{AEB1F610-A805-4FF4-BBFF-87349AF5C8AE}</ProjectGuid>
+        <ProjectGuid>{E276A635-91B8-4746-94D7-4725CC26D9CB}</ProjectGuid>
         <ProjectVersion>20.1</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
-        <MainSource>Controle_Estoque.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Config Condition="'$(Config)'==''">MovimentacaoProduto</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
+        <ProjectName Condition="'$(ProjectName)'==''">Controle_EstoqueTests</ProjectName>
         <TargetedPlatforms>1</TargetedPlatforms>
-        <AppType>Application</AppType>
-        <ProjectName Condition="'$(ProjectName)'==''">Controle_Estoque</ProjectName>
+        <AppType>Console</AppType>
+        <MainSource>Controle_EstoqueTests.dpr</MainSource>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
         <Base>true</Base>
@@ -40,14 +40,18 @@
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
-    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win32)'!=''">
-        <Cfg_2_Win32>true</Cfg_2_Win32>
-        <CfgParent>Cfg_2</CfgParent>
-        <Cfg_2>true</Cfg_2>
+    <PropertyGroup Condition="'$(Config)'=='teste' or '$(Cfg_3)'!=''">
+        <Cfg_3>true</Cfg_3>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='MovimentacaoProduto' or '$(Cfg_4)'!=''">
+        <Cfg_4>true</Cfg_4>
+        <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
+        <DCC_DcuOutput>.</DCC_DcuOutput>
         <DCC_ExeOutput>.\$(Platform)\$(Config)</DCC_ExeOutput>
         <DCC_E>false</DCC_E>
         <DCC_N>false</DCC_N>
@@ -55,22 +59,18 @@
         <DCC_F>false</DCC_F>
         <DCC_K>false</DCC_K>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
-        <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
-        <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
-        <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
-        <SanitizedProjectName>Controle_Estoque</SanitizedProjectName>
+        <DCC_UnitSearchPath>$(BDS)\Source\DUnit\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_Define>_CONSOLE_TESTRUNNER;$(DCC_Define)</DCC_Define>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <DCC_UsePackage>DBXSqliteDriver;IndyIPCommon;RESTComponents;bindcompdbx;DBXInterBaseDriver;vcl;IndyIPServer;vclactnband;vclFireDAC;IndySystem;frxDB26;fsADO26;frxDBX26;tethering;svnui;dsnapcon;FireDACADSDriver;FireDACMSAccDriver;fmxFireDAC;fsDB26;vclimg;TeeDB;FireDAC;vcltouch;vcldb;bindcompfmx;svn;frxe26;FireDACSqliteDriver;FireDACPgDriver;ibmonitor;inetdb;FMXTee;frxIBX26;soaprtl;DbxCommonDriver;FmxTeeUI;ibxpress;fmx;FireDACIBDriver;fmxdae;xmlrtl;soapmidas;ibxbindings;fmxobj;vclwinx;vclib;rtl;Tee;DbxClientDriver;frxTee26;fs26;frxADO26;CustomIPTransport;vcldsnap;dbexpress;IndyCore;vclx;frxIntIO26;bindcomp;appanalytics;dsnap;FireDACCommon;IndyIPClient;bindcompvcl;frxcs26;RESTBackendComponents;TeeUI;VCLRESTComponents;soapserver;dbxcds;VclSmp;adortl;fsTee26;vclie;bindengine;DBXMySQLDriver;CloudService;dsnapxml;FireDACMySQLDriver;dbrtl;IndyProtocols;inetdbxpress;frx26;fsIBX26;FireDACCommonODBC;FireDACCommonDriver;frxIntIOIndy26;inet;fmxase;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>vclwinx;DataSnapServer;fs29;fmx;FMXfrLanguageSlovak29;vclie;DbxCommonDriver;bindengine;IndyIPCommon;VCLRESTComponents;DBXMSSQLDriver;FireDACCommonODBC;emsclient;FMXfrCoreLibrary29;appanalytics;IndyProtocols;vclx;Skia.Package.RTL;frxADOQueryBuilder29;dbxcds;vcledge;fcxp29;frLanguageSlovak29;frLanguageHungarian29;FMXfrLanguageLatvian29;FMXfrLanguageUkrainian29;DBXFirebirdDriver;FMXfrLanguageDutch29;FireDACSqliteDriver;DbxClientDriver;soapmidas;frLanguageArabic29;frCoreLibrary29;dbexpress;frLanguageCatalon29;frLanguageBrazil29;frLanguageCzech29;FMXfrxDBX29;FMXfrLanguageSwiss29;inet;vcltouch;FireDACDBXDriver;fmxdae;FMXfrLanguageTurkish29;CustomIPTransport;FireDACMSSQLDriver;FMXfrLanguageBrazil129;FMXfrLanguageCzech29;frLanguageItalian29;FMXfsDB29;frxPDF29;frLanguageSwiss29;IndySystem;FMXfsADO29;frxe29;frLanguageSwedish29;FMXfrLanguagePolish29;frLanguageUkrainian29;fsDB29;vclFireDAC;FireDACCommon;DataSnapServerMidas;FireDACODBCDriver;emsserverresource;frLanguageDanish29;bindcompdbx;fcx29;FMXfrLanguageLithuanian29;rtl;FireDACMySQLDriver;FMXfrLanguageGerman29;fqb29;frLanguageLithuanian29;DBXSqliteDriver;frLanguageFrench29;frLanguageRussian29;DBXSybaseASEDriver;frxSM29;vclimg;DataSnapFireDAC;FMXfrLanguageBrazil229;inetdbxpress;FireDAC;xmlrtl;dsnap;frLanguageSerbian29;FireDACDb2Driver;FMXfrLanguageRussian29;DBXOracleDriver;DBXInformixDriver;frLanguageFarsi29;FMXfrLanguageFrench29;fmxobj;bindcompvclsmp;DataSnapNativeClient;frx29;FMXfrLanguageHebrew29;FMXfrLanguageCroatian29;frLanguageChinese29;DatasnapConnectorsFreePascal;frControlsLibrary29;frxQueryBuilder29;FMXfrxADO29;frxIntIOIndy29;frLanguageHebrew29;fqbADO29;FMXfrLanguageBulgarian29;FMXfrxCDS29;emshosting;frxDB29;fqbDBX29;frLocalizationLibrary29;FireDACCommonDriver;FMXfcxd29;IndyIPClient;frxHTML29;bindcompvclwinx;frLanguageTaiwan29;FMXfrLanguageArabic29;emsedge;bindcompfmx;frxDBXQueryBuilder29;frLanguageRomanian29;frLanguageGerman29;inetdb;FMXfrLanguageItalian29;frLanguageIndonesian29;FMXfrLanguageSpanish29;FireDACASADriver;FMXfcxed29;frLanguageBrazil229;vclactnband;FMXfrxDB29;fmxFireDAC;FireDACInfxDriver;frLanguageCroatian29;DBXMySQLDriver;FMXfs29;fsADO29;VclSmp;FMXfrxFD29;DataSnapCommon;fmxase;FMXfrLanguageFarsi29;DBXOdbcDriver;FMXfrLanguageTaiwan29;dbrtl;FireDACOracleDriver;Skia.Package.FMX;FMXfrLanguageChinese29;FMXfrLanguagePortuguese29;FireDACMSAccDriver;frxcs29;FMXfrLanguageJapanese29;frLanguageSlovene29;DataSnapIndy10ServerTransport;frADODataLibrary29;DataSnapConnectors;frLanguageTurkish29;vcldsnap;DBXInterBaseDriver;fcxe29;FireDACMongoDBDriver;frLanguageGreek29;FireDACTDataDriver;Skia.Package.VCL;frLanguageBrazil129;vcldb;FMXfrLanguageCatalon29;FMXfrLanguageHungarian29;bindcomp;frLanguageLatvian29;IndyCore;RESTBackendComponents;frLanguageSpanish29;frxIntIO29;FMXfrx29;frLanguageJapanese29;frSmartMemo29;FireDACADSDriver;RESTComponents;FMXfrLanguageDanish29;IndyIPServer;vcl;dsnapxml;adortl;dsnapcon;DataSnapClient;DataSnapProviderClient;FMXfrLanguageSlovene29;FMXfrLanguageSerbian29;FMXfrxe29;frxADO29;DBXDb2Driver;FMXfrLanguageIndonesian29;FMXfrLanguageSwedish29;frLanguageDutch29;emsclientfiredac;FireDACPgDriver;FireDACDSDriver;fqbSM29;frLanguagePortuguese29;tethering;frLanguageBulgarian29;frLanguagePolish29;bindcompvcl;frxDBX29;FMXfrLanguageBrazil29;CloudService;DBXSybaseASADriver;FMXfrLanguageGreek29;FMXfcxpd29;FMXfrLocalizationLibrary29;frGraphicsLibrary29;soaprtl;FMXfrLanguageRomanian29;soapserver;FireDACIBDriver;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <BT_BuildType>Debug</BT_BuildType>
-        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
-        <DCC_UsePackage>DBXSqliteDriver;IndyIPCommon;RESTComponents;bindcompdbx;DBXInterBaseDriver;vcl;IndyIPServer;vclactnband;vclFireDAC;IndySystem;tethering;dsnapcon;FireDACADSDriver;FireDACMSAccDriver;fmxFireDAC;vclimg;TeeDB;FireDAC;vcltouch;vcldb;bindcompfmx;FireDACSqliteDriver;FireDACPgDriver;ibmonitor;inetdb;FMXTee;soaprtl;DbxCommonDriver;FmxTeeUI;ibxpress;fmx;FireDACIBDriver;fmxdae;xmlrtl;soapmidas;ibxbindings;fmxobj;vclwinx;vclib;rtl;Tee;DbxClientDriver;CustomIPTransport;vcldsnap;dbexpress;IndyCore;vclx;bindcomp;appanalytics;dsnap;FireDACCommon;IndyIPClient;bindcompvcl;RESTBackendComponents;TeeUI;VCLRESTComponents;soapserver;dbxcds;VclSmp;adortl;vclie;bindengine;DBXMySQLDriver;CloudService;dsnapxml;FireDACMySQLDriver;dbrtl;IndyProtocols;inetdbxpress;FireDACCommonODBC;FireDACCommonDriver;inet;fmxase;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>vclwinx;DataSnapServer;fs29;fmx;FMXfrLanguageSlovak29;vclie;DbxCommonDriver;bindengine;IndyIPCommon;VCLRESTComponents;DBXMSSQLDriver;FireDACCommonODBC;emsclient;FMXfrCoreLibrary29;appanalytics;IndyProtocols;vclx;frxADOQueryBuilder29;dbxcds;vcledge;fcxp29;frLanguageSlovak29;frLanguageHungarian29;FMXfrLanguageLatvian29;FMXfrLanguageUkrainian29;DBXFirebirdDriver;FMXfrLanguageDutch29;FireDACSqliteDriver;DbxClientDriver;soapmidas;frLanguageArabic29;frCoreLibrary29;dbexpress;frLanguageCatalon29;frLanguageBrazil29;frLanguageCzech29;FMXfrxDBX29;FMXfrLanguageSwiss29;inet;vcltouch;FireDACDBXDriver;fmxdae;FMXfrLanguageTurkish29;CustomIPTransport;FireDACMSSQLDriver;FMXfrLanguageBrazil129;FMXfrLanguageCzech29;frLanguageItalian29;FMXfsDB29;frxPDF29;frLanguageSwiss29;IndySystem;FMXfsADO29;frxe29;frLanguageSwedish29;FMXfrLanguagePolish29;frLanguageUkrainian29;fsDB29;vclFireDAC;FireDACCommon;DataSnapServerMidas;FireDACODBCDriver;emsserverresource;frLanguageDanish29;bindcompdbx;fcx29;FMXfrLanguageLithuanian29;rtl;FireDACMySQLDriver;FMXfrLanguageGerman29;fqb29;frLanguageLithuanian29;DBXSqliteDriver;frLanguageFrench29;frLanguageRussian29;DBXSybaseASEDriver;frxSM29;vclimg;DataSnapFireDAC;FMXfrLanguageBrazil229;inetdbxpress;FireDAC;xmlrtl;dsnap;frLanguageSerbian29;FireDACDb2Driver;FMXfrLanguageRussian29;DBXOracleDriver;DBXInformixDriver;frLanguageFarsi29;FMXfrLanguageFrench29;fmxobj;bindcompvclsmp;DataSnapNativeClient;frx29;FMXfrLanguageHebrew29;FMXfrLanguageCroatian29;frLanguageChinese29;DatasnapConnectorsFreePascal;frControlsLibrary29;frxQueryBuilder29;FMXfrxADO29;frxIntIOIndy29;frLanguageHebrew29;fqbADO29;FMXfrLanguageBulgarian29;FMXfrxCDS29;emshosting;frxDB29;fqbDBX29;frLocalizationLibrary29;FireDACCommonDriver;FMXfcxd29;IndyIPClient;frxHTML29;bindcompvclwinx;frLanguageTaiwan29;FMXfrLanguageArabic29;emsedge;bindcompfmx;frxDBXQueryBuilder29;frLanguageRomanian29;frLanguageGerman29;inetdb;FMXfrLanguageItalian29;frLanguageIndonesian29;FMXfrLanguageSpanish29;FireDACASADriver;FMXfcxed29;frLanguageBrazil229;vclactnband;FMXfrxDB29;fmxFireDAC;FireDACInfxDriver;frLanguageCroatian29;DBXMySQLDriver;FMXfs29;fsADO29;VclSmp;FMXfrxFD29;DataSnapCommon;fmxase;FMXfrLanguageFarsi29;DBXOdbcDriver;FMXfrLanguageTaiwan29;dbrtl;FireDACOracleDriver;FMXfrLanguageChinese29;FMXfrLanguagePortuguese29;FireDACMSAccDriver;frxcs29;FMXfrLanguageJapanese29;frLanguageSlovene29;DataSnapIndy10ServerTransport;frADODataLibrary29;DataSnapConnectors;frLanguageTurkish29;vcldsnap;DBXInterBaseDriver;fcxe29;FireDACMongoDBDriver;frLanguageGreek29;FireDACTDataDriver;Skia.Package.VCL;frLanguageBrazil129;vcldb;FMXfrLanguageCatalon29;FMXfrLanguageHungarian29;bindcomp;frLanguageLatvian29;IndyCore;RESTBackendComponents;frLanguageSpanish29;frxIntIO29;FMXfrx29;frLanguageJapanese29;frSmartMemo29;FireDACADSDriver;RESTComponents;FMXfrLanguageDanish29;IndyIPServer;vcl;dsnapxml;adortl;dsnapcon;DataSnapClient;DataSnapProviderClient;FMXfrLanguageSlovene29;FMXfrLanguageSerbian29;FMXfrxe29;frxADO29;DBXDb2Driver;FMXfrLanguageIndonesian29;FMXfrLanguageSwedish29;frLanguageDutch29;emsclientfiredac;FireDACPgDriver;FireDACDSDriver;fqbSM29;frLanguagePortuguese29;tethering;frLanguageBulgarian29;frLanguagePolish29;bindcompvcl;frxDBX29;FMXfrLanguageBrazil29;CloudService;DBXSybaseASADriver;FMXfrLanguageGreek29;FMXfcxpd29;FMXfrLocalizationLibrary29;frGraphicsLibrary29;soaprtl;FMXfrLanguageRomanian29;soapserver;FireDACIBDriver;$(DCC_UsePackage)</DCC_UsePackage>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
@@ -79,14 +79,11 @@
         <DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
         <DCC_DebugInfoInExe>true</DCC_DebugInfoInExe>
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
-        <DCC_ExeOutput>C:\delphi2\desafio-delphi\Exe</DCC_ExeOutput>
+        <DCC_IntegerOverflowCheck>true</DCC_IntegerOverflowCheck>
+        <DCC_RangeChecking>true</DCC_RangeChecking>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
-        <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
-        <DCC_DcuOutput>..\DCU\</DCC_DcuOutput>
-        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -94,72 +91,42 @@
         <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
         <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
-    <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
-        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
-        <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
-    </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="..\View\UfrmPrincipal.pas">
-            <Form>frmPrincipal</Form>
+        <DCCReference Include="TestUfrmLogin.pas"/>
+        <DCCReference Include="..\..\View\UfrmLogin.pas">
+            <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\View\UfrmPadrao.pas">
-            <Form>frmPadrao</Form>
+        <DCCReference Include="Testudmmovimentacao.pas"/>
+        <DCCReference Include="..\..\Dao\udmmovimentacao.pas">
+            <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\View\UfrmProduto.pas">
-            <Form>frmProduto</Form>
-        </DCCReference>
-        <DCCReference Include="..\View\UfrmPesquisaCategoria.pas">
-            <Form>frmPesquisaUsuario</Form>
-        </DCCReference>
-        <DCCReference Include="..\View\UfrmPesquisaProduto.pas">
-            <Form>frmPesquisaProduto</Form>
-        </DCCReference>
-        <DCCReference Include="..\View\UfrmPesquisaPadrao.pas">
-            <Form>frmPesquisaPadrao</Form>
-        </DCCReference>
-        <DCCReference Include="..\View\UfrmPadraoMovimento.pas">
-            <Form>frmPadraoMovimento</Form>
-        </DCCReference>
-        <DCCReference Include="..\View\UfrmCompra.pas">
-            <Form>frmMovimentacao</Form>
-        </DCCReference>
-        <DCCReference Include="..\Model\Produto.pas"/>
-        <DCCReference Include="..\Dao\uDM.pas">
+        <DCCReference Include="..\..\Model\Movimentacao.pas"/>
+        <DCCReference Include="..\..\Controller\UObjetoTelaUtil.pas"/>
+        <DCCReference Include="..\..\Dao\uDM.pas">
             <Form>DM</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Controller\uProdutoController.pas"/>
-        <DCCReference Include="..\Dao\udmProduto.pas">
-            <Form>dmProduto</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="..\View\UfrmLogin.pas">
-            <Form>frmLogin</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="..\Controller\UObjetoTelaUtil.pas"/>
-        <DCCReference Include="..\Controller\UObjetoBuscaProduto.pas"/>
-        <DCCReference Include="..\Dao\udmmovimentacao.pas">
-            <Form>dmMovimentacao</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="..\Model\Movimentacao.pas"/>
-        <DCCReference Include="..\Controller\uMovimentacaoController.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
+        </BuildConfiguration>
+        <BuildConfiguration Include="Release">
+            <Key>Cfg_2</Key>
+            <CfgParent>Base</CfgParent>
+        </BuildConfiguration>
+        <BuildConfiguration Include="MovimentacaoProduto">
+            <Key>Cfg_4</Key>
+            <CfgParent>Base</CfgParent>
         </BuildConfiguration>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_1</Key>
             <CfgParent>Base</CfgParent>
         </BuildConfiguration>
-        <BuildConfiguration Include="Release">
-            <Key>Cfg_2</Key>
+        <BuildConfiguration Include="teste">
+            <Key>Cfg_3</Key>
             <CfgParent>Base</CfgParent>
         </BuildConfiguration>
     </ItemGroup>
@@ -169,18 +136,34 @@
         <BorlandProject>
             <Delphi.Personality>
                 <Source>
-                    <Source Name="MainSource">Controle_Estoque.dpr</Source>
+                    <Source Name="MainSource">Controle_EstoqueTests.dpr</Source>
                 </Source>
-                <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k290.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp290.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
-                </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="4">
-                <DeployFile LocalName="..\EXE\Controle_Estoque.exe" Configuration="Debug" Class="ProjectOutput"/>
-                <DeployFile LocalName="..\Exe\Controle_Estoque.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="$(BDS)\Redist\iossimulator\libcgunwind.1.0.dylib" Class="DependencyModule">
+                    <Platform Name="iOSSimulator">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\Redist\iossimulator\libpcre.dylib" Class="DependencyModule">
+                    <Platform Name="iOSSimulator">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\Redist\osx32\libcgunwind.1.0.dylib" Class="DependencyModule">
+                    <Platform Name="OSX32">
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\MovimentacaoProduto\Controle_EstoqueTests.exe" Configuration="MovimentacaoProduto" Class="ProjectOutput">
                     <Platform Name="Win32">
-                        <RemoteName>Controle_Estoque.exe</RemoteName>
+                        <RemoteName>Controle_EstoqueTests.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win32\teste\Controle_EstoqueTests.exe" Configuration="teste" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>Controle_EstoqueTests.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -1127,7 +1110,6 @@
                 <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="iOSSimARM64" Name="$(PROJECTNAME).app"/>
-                <ProjectRoot Platform="iOSSimulator" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Linux64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="OSX32" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="OSX64" Name="$(PROJECTNAME).app"/>
@@ -1141,7 +1123,9 @@
                 <Platform value="Win64">False</Platform>
             </Platforms>
             <UnitTesting>
-                <TestProjectName>C:\delphi2\desafio-delphi\Projeto\Test\Controle_EstoqueTests.dproj</TestProjectName>
+                <TestFramework>DUnit / Delphi Win32</TestFramework>
+                <TestRunner>GUI</TestRunner>
+                <SourceProjectName>C:\delphi2\desafio-delphi\Projeto\Controle_Estoque.dproj</SourceProjectName>
             </UnitTesting>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>

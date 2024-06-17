@@ -23,7 +23,7 @@ type
     procedure setData(const Value: TDateTime);
   public
     property Id: Integer read FId write FId;
-    property Produto: Integer read FId write FProduto;
+    property Produto: Integer read FProduto write FProduto;
     property Tipo: String read FTipo write SetTipo;
     property ValorUnit: Real read FValorUnit write SetVlUnit;
     property ValorTotal: Real read FValorTotal write SetVlTotal;
@@ -57,7 +57,7 @@ end;
 
 procedure TMovimento.SetEstoque(const Value: Integer);
 begin
-  FValorUnit := Value;
+  FQuantidade := Value;
 end;
 
 procedure TMovimento.SetVlUnit(const Value: Real);

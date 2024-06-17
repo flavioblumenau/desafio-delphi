@@ -57,7 +57,6 @@ object frmLogin: TfrmLogin
     Color = 13298927
     ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 588
     object BLogar: TSpeedButton
       Left = 66
       Top = 10
@@ -296,8 +295,6 @@ object frmLogin: TfrmLogin
     Color = 13298927
     ParentBackground = False
     TabOrder = 1
-    ExplicitTop = 281
-    ExplicitWidth = 588
   end
   object EUsuario: TEdit
     Left = 48

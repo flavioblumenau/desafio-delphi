@@ -2,7 +2,6 @@ inherited frmMovimentacao: TfrmMovimentacao
   Caption = 'Movimenta'#231#227'o de Produto'
   ClientHeight = 576
   StyleElements = [seFont, seClient, seBorder]
-  ExplicitTop = -164
   ExplicitHeight = 615
   TextHeight = 13
   inherited imFundo: TImage
@@ -36,7 +35,6 @@ inherited frmMovimentacao: TfrmMovimentacao
       Width = 11
       Height = 13
       Caption = 'ID'
-      FocusControl = edtIDCompra
     end
     object Label2: TLabel
       Left = 24
@@ -64,7 +62,6 @@ inherited frmMovimentacao: TfrmMovimentacao
       Width = 55
       Height = 13
       Caption = 'CADASTRO'
-      FocusControl = edtCadastro
     end
     object Label5: TLabel
       Left = 164
@@ -72,7 +69,6 @@ inherited frmMovimentacao: TfrmMovimentacao
       Width = 49
       Height = 13
       Caption = 'PRODUTO'
-      FocusControl = edtNomeFornecedor
     end
     object LbValorUnit: TLabel
       Left = 48
@@ -93,7 +89,6 @@ inherited frmMovimentacao: TfrmMovimentacao
       Width = 27
       Height = 13
       Caption = 'QTDE'
-      FocusControl = dbeQtde
     end
     object Image1: TImage
       Left = 499
@@ -3267,7 +3262,6 @@ inherited frmMovimentacao: TfrmMovimentacao
       Width = 88
       Height = 13
       Caption = 'TIPO MOVIMENTO'
-      FocusControl = edtCadastro
     end
     object BProduto: TSpeedButton
       Left = 135
@@ -3283,75 +3277,70 @@ inherited frmMovimentacao: TfrmMovimentacao
       Width = 469
       Height = 46
     end
-    object edtIDCompra: TDBEdit
+    object EId: TEdit
       Left = 24
       Top = 24
-      Width = 134
+      Width = 121
       Height = 21
-      DataField = 'ID'
-      DataSource = dsPadrao
-      Enabled = False
-      ReadOnly = True
       TabOrder = 0
+      Text = '0'
     end
-    object edtCadastro: TDBEdit
-      Left = 324
+    object CBTipo: TComboBox
+      Left = 167
       Top = 24
-      Width = 134
+      Width = 114
       Height = 21
-      DataField = 'DATA'
-      DataSource = dsPadrao
-      Enabled = False
-      ReadOnly = True
+      TabOrder = 1
+      Items.Strings = (
+        'E'
+        'S')
+    end
+    object cpData: TCalendarPicker
+      Left = 319
+      Top = 24
+      Height = 32
+      CalendarHeaderInfo.DaysOfWeekFont.Charset = DEFAULT_CHARSET
+      CalendarHeaderInfo.DaysOfWeekFont.Color = clWindowText
+      CalendarHeaderInfo.DaysOfWeekFont.Height = -13
+      CalendarHeaderInfo.DaysOfWeekFont.Name = 'Segoe UI'
+      CalendarHeaderInfo.DaysOfWeekFont.Style = []
+      CalendarHeaderInfo.Font.Charset = DEFAULT_CHARSET
+      CalendarHeaderInfo.Font.Color = clWindowText
+      CalendarHeaderInfo.Font.Height = -20
+      CalendarHeaderInfo.Font.Name = 'Segoe UI'
+      CalendarHeaderInfo.Font.Style = []
+      Color = clWindow
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGray
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 2
+      TextHint = 'select a date'
     end
-    object edtNomeFornecedor: TDBEdit
-      Left = 164
-      Top = 64
-      Width = 329
-      Height = 21
-      DataField = 'DESCRICAO'
-      DataSource = dsproduto
-      TabOrder = 3
-    end
-    object edtproduto: TDBEdit
+    object EIdProduto: TEdit
       Left = 24
       Top = 64
       Width = 105
       Height = 21
-      DataField = 'PRODUTO'
-      DataSource = dsPadrao
-      TabOrder = 4
-      OnExit = edtIDProdutoExit
+      TabOrder = 3
+      OnExit = EIdProdutoExit
     end
-    object dbeQtde: TDBEdit
-      Left = 24
-      Top = 104
-      Width = 172
-      Height = 21
-      DataField = 'QUANTIDADE'
-      DataSource = dsPadrao
-      TabOrder = 5
-    end
-    object edtTipo: TDBComboBox
+    object ENomeProduto: TEdit
       Left = 164
-      Top = 24
-      Width = 145
+      Top = 64
+      Width = 277
       Height = 21
-      Ctl3D = True
-      DataField = 'TIPO'
-      DataSource = dsPadrao
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -11
-      Font.Name = 'Tahoma'
-      Font.Style = [fsBold]
-      Items.Strings = (
-        'E'
-        'S')
-      ParentCtl3D = False
-      ParentFont = False
-      TabOrder = 1
+      TabOrder = 4
+    end
+    object EQuantidade: TNumberBox
+      Left = 24
+      Top = 107
+      Width = 121
+      Height = 21
+      TabOrder = 5
+      OnChange = EQuantidadeChange
     end
   end
   inherited Panel4: TPanel
@@ -3372,6 +3361,7 @@ inherited frmMovimentacao: TfrmMovimentacao
     ParentFont = False
     TitleFont.Height = -16
     TitleFont.Style = [fsBold]
+    OnDrawColumnCell = DBGrid1DrawColumnCell
     OnTitleClick = DBGrid1TitleClick
     Columns = <
       item
@@ -3437,8 +3427,10 @@ inherited frmMovimentacao: TfrmMovimentacao
     end
   end
   inherited qryPadrao: TFDQuery
-    AfterScroll = qryPadraoAfterScroll
-    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint]
+    UpdateOptions.AssignedValues = [uvEDelete, uvEInsert, uvEUpdate, uvFetchGeneratorsPoint]
+    UpdateOptions.EnableDelete = False
+    UpdateOptions.EnableInsert = False
+    UpdateOptions.EnableUpdate = False
     UpdateOptions.FetchGeneratorsPoint = gpImmediate
     UpdateOptions.AutoIncFields = 'ID'
     SQL.Strings = (
@@ -3473,7 +3465,6 @@ inherited frmMovimentacao: TfrmMovimentacao
     object qryPadraoQUANTIDADE: TIntegerField
       FieldName = 'QUANTIDADE'
       Origin = 'QUANTIDADE'
-      OnChange = qryPadraoQUANTIDADEChange
     end
     object qryPadraoVALOR: TSingleField
       FieldName = 'VALOR'
@@ -3482,6 +3473,14 @@ inherited frmMovimentacao: TfrmMovimentacao
     object qryPadraoVALOR_TOTAL: TSingleField
       FieldName = 'VALOR_TOTAL'
       Origin = 'VALOR_TOTAL'
+    end
+    object qryPadraoDESCRICAO: TStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'DESCRICAO'
+      Origin = 'DESCRICAO'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 100
     end
   end
   inherited dsPadrao: TDataSource
@@ -3938,11 +3937,10 @@ inherited frmMovimentacao: TfrmMovimentacao
   end
   object dsRelatorio: TDataSource
     DataSet = QryRelatorio
-    Left = 264
+    Left = 256
     Top = 382
   end
   object QryRelatorio: TFDQuery
-    AfterScroll = qryPadraoAfterScroll
     Connection = DM.Conexao
     UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint]
     UpdateOptions.FetchGeneratorsPoint = gpImmediate
@@ -3953,7 +3951,7 @@ inherited frmMovimentacao: TfrmMovimentacao
       'FROM '
       'produto  '
       'ORDER BY ID ')
-    Left = 184
+    Left = 176
     Top = 382
     object QryRelatorioID: TFDAutoIncField
       FieldName = 'ID'

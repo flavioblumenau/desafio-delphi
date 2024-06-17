@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{A4256FB0-D4CC-4499-A388-38BE3FAA4189}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Controle_Estoque.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Test\Controle_EstoqueTests.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Controle_Estoque">
+        <MSBuild Projects="Controle_Estoque.dproj"/>
+    </Target>
+    <Target Name="Controle_Estoque:Clean">
+        <MSBuild Projects="Controle_Estoque.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Controle_Estoque:Make">
+        <MSBuild Projects="Controle_Estoque.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Controle_EstoqueTests">
+        <MSBuild Projects="Test\Controle_EstoqueTests.dproj"/>
+    </Target>
+    <Target Name="Controle_EstoqueTests:Clean">
+        <MSBuild Projects="Test\Controle_EstoqueTests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Controle_EstoqueTests:Make">
+        <MSBuild Projects="Test\Controle_EstoqueTests.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Controle_Estoque;Controle_EstoqueTests"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Controle_Estoque:Clean;Controle_EstoqueTests:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Controle_Estoque:Make;Controle_EstoqueTests:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

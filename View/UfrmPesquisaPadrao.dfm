@@ -46,35 +46,9 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
     object lblNome: TLabel
       Left = 168
       Top = 10
-      Width = 42
+      Width = 126
       Height = 19
-      Caption = 'Nome'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -16
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object lblInicio: TLabel
-      Left = 384
-      Top = 10
-      Width = 76
-      Height = 19
-      Caption = 'Data In'#237'cio'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -16
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-    end
-    object lblFim: TLabel
-      Left = 512
-      Top = 10
-      Width = 63
-      Height = 19
-      Caption = 'Data Fim'
+      Caption = 'Digite a Pesquisa:'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -16
@@ -429,7 +403,6 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
       Height = 22
       Style = csOwnerDrawVariable
       TabOrder = 0
-      OnChange = cbChavePesquisaChange
       Items.Strings = (
         'C'#211'DIGO'
         'NOME'
@@ -444,26 +417,6 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
       Height = 27
       CharCase = ecUpperCase
       TabOrder = 1
-    end
-    object edtInicio: TMaskEdit
-      Left = 384
-      Top = 35
-      Width = 122
-      Height = 27
-      EditMask = '!##/##/####;1;_'
-      MaxLength = 10
-      TabOrder = 2
-      Text = '  /  /    '
-    end
-    object edtFim: TMaskEdit
-      Left = 512
-      Top = 35
-      Width = 113
-      Height = 27
-      EditMask = '!##/##/####;1;_'
-      MaxLength = 10
-      TabOrder = 3
-      Text = '  /  /    '
     end
   end
   object DBGrid1: TDBGrid

@@ -92,8 +92,8 @@ begin
     begin
       Produto    := FieldByName('Produto').AsInteger;
       Tipo       := FieldByName('Tipo').AsString;
-      ValorUnit  := FieldByName('ValorUnit').AsFloat;
-      ValorTotal := FieldByName('ValorTotal').AsFloat;
+      ValorUnit  := FieldByName('Valor').AsFloat;
+      ValorTotal := FieldByName('Valor_Total').AsFloat;
       Quantidade := FieldByName('Quantidade').AsInteger;
       AData      := FieldByName('Data').AsDateTime;
     end;

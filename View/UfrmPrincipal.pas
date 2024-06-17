@@ -26,11 +26,11 @@ type
     Compras1: TMenuItem;
     Vendas1: TMenuItem;
     Relatrios1: TMenuItem;
-    ListaUsurios1: TMenuItem;
     MovimentacaoRelatorio1: TMenuItem;
     procedure AbreTelaProduto;
     procedure AbreTelaCompra;
     procedure AbreTelaVenda;
+    procedure AbreRelatorio;
     procedure Timer1Timer(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure BSairClick(Sender: TObject);
@@ -41,6 +41,7 @@ type
     procedure BComprasClick(Sender: TObject);
     procedure FormPaint(Sender: TObject);
     procedure BVendasClick(Sender: TObject);
+    procedure MovimentacaoRelatorio1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -122,6 +123,18 @@ begin
 end;
 
 
+procedure TfrmPrincipal.AbreRelatorio;
+var
+  ObjFrmCompra : TfrmMovimentacao;
+begin
+  ObjFrmCompra := TfrmMovimentacao.Create(nil);
+  try
+   ObjFrmCompra.AbreRelatorio;
+  finally
+   ObjFrmCompra.Free;
+  end;
+end;
+
 procedure TfrmPrincipal.AbreTelaCompra;
 var
   ObjFrmCompra : TfrmMovimentacao;
@@ -200,6 +213,11 @@ begin
       Brush.Color := RGB(coluna, 0, 0); { Modifique para obter cores diferentes }
       FillRect(Rect(0, coluna * altura, ClientWidth, (coluna + 1) * altura)) ;
     end;
+end;
+
+procedure TfrmPrincipal.MovimentacaoRelatorio1Click(Sender: TObject);
+begin
+  AbreRelatorio;
 end;
 
 end.

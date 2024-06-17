@@ -2,7 +2,6 @@ inherited frmPadraoMovimento: TfrmPadraoMovimento
   Caption = 'Formul'#225'rio Padr'#227'o de Movimento'
   ClientHeight = 521
   StyleElements = [seFont, seClient, seBorder]
-  ExplicitTop = 2
   ExplicitHeight = 560
   TextHeight = 13
   inherited imFundo: TImage
