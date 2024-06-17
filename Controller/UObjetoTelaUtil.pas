@@ -32,6 +32,7 @@ begin
     dm.Transacao.StartTransaction;
 end;
 
+
 procedure TTelaUtils.salvaTransacao;
 begin
   dm.Transacao.CommitRetaining;

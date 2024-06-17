@@ -17,16 +17,6 @@ type
     BSair: TSpeedButton;
     StatusBar1: TStatusBar;
     Timer1: TTimer;
-    MainMenu1: TMainMenu;
-    Cadastro1: TMenuItem;
-    Usurio1: TMenuItem;
-    Produtos1: TMenuItem;
-    categoriasProd1: TMenuItem;
-    Movimentos1: TMenuItem;
-    Compras1: TMenuItem;
-    Vendas1: TMenuItem;
-    Relatrios1: TMenuItem;
-    MovimentacaoRelatorio1: TMenuItem;
     procedure AbreTelaProduto;
     procedure AbreTelaCompra;
     procedure AbreTelaVenda;

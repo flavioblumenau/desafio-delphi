@@ -19,7 +19,7 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
     Left = 0
     Top = 0
     Width = 936
-    Height = 65
+    Height = 72
     Align = alTop
     Color = clSkyBlue
     Font.Charset = DEFAULT_CHARSET
@@ -399,8 +399,10 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
     object cbChavePesquisa: TComboBox
       Left = 8
       Top = 35
-      Width = 153
+      Width = 154
       Height = 22
+      BevelKind = bkFlat
+      BevelOuter = bvRaised
       Style = csOwnerDrawVariable
       TabOrder = 0
       Items.Strings = (
@@ -414,16 +416,20 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
       Left = 169
       Top = 35
       Width = 209
-      Height = 27
+      Height = 30
+      AutoSize = False
+      BevelKind = bkFlat
+      BevelOuter = bvRaised
+      BevelWidth = 2
       CharCase = ecUpperCase
       TabOrder = 1
     end
   end
   object DBGrid1: TDBGrid
     Left = 0
-    Top = 65
+    Top = 72
     Width = 936
-    Height = 221
+    Height = 214
     Align = alClient
     DataSource = dsPesquisaPadrao
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]

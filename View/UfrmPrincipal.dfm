@@ -4,7 +4,7 @@ object frmPrincipal: TfrmPrincipal
   Caption = 
     'Controle de Estoque ERP Fl'#225'vio da Silva - programadorflavio@hotm' +
     'ail.com'
-  ClientHeight = 424
+  ClientHeight = 444
   ClientWidth = 1184
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -12,7 +12,6 @@ object frmPrincipal: TfrmPrincipal
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  Menu = MainMenu1
   Position = poScreenCenter
   WindowState = wsMaximized
   OnCreate = FormCreate
@@ -27,6 +26,9 @@ object frmPrincipal: TfrmPrincipal
     Color = clSkyBlue
     ParentBackground = False
     TabOrder = 0
+    DesignSize = (
+      1184
+      90)
     object BProdutos: TSpeedButton
       Left = 0
       Top = 0
@@ -1624,10 +1626,11 @@ object frmPrincipal: TfrmPrincipal
       OnClick = BVendasClick
     end
     object BSair: TSpeedButton
-      Left = 426
+      Left = 1074
       Top = 0
       Width = 100
       Height = 90
+      Anchors = [akTop, akRight]
       Caption = '&Sair'
       Flat = True
       Font.Charset = DEFAULT_CHARSET
@@ -2029,7 +2032,7 @@ object frmPrincipal: TfrmPrincipal
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 405
+    Top = 425
     Width = 1184
     Height = 19
     Panels = <
@@ -2042,46 +2045,11 @@ object frmPrincipal: TfrmPrincipal
       item
         Width = 50
       end>
+    ExplicitTop = 405
   end
   object Timer1: TTimer
     OnTimer = Timer1Timer
     Left = 96
     Top = 168
-  end
-  object MainMenu1: TMainMenu
-    Left = 176
-    Top = 136
-    object Cadastro1: TMenuItem
-      Caption = 'Cadastro'
-      object Usurio1: TMenuItem
-        Caption = '&Usu'#225'rio'
-        ShortCut = 16469
-      end
-      object Produtos1: TMenuItem
-        Caption = '&Produtos'
-        ShortCut = 16464
-        OnClick = Produtos1Click
-      end
-      object categoriasProd1: TMenuItem
-        Caption = 'Categorias'
-        ShortCut = 16454
-      end
-    end
-    object Movimentos1: TMenuItem
-      Caption = 'Movimenta'#231#245'es'
-      object Compras1: TMenuItem
-        Caption = '&Compras'
-      end
-      object Vendas1: TMenuItem
-        Caption = '&Vendas'
-      end
-    end
-    object Relatrios1: TMenuItem
-      Caption = 'Relat'#243'rios'
-      object MovimentacaoRelatorio1: TMenuItem
-        Caption = 'Movimenta'#231#227'o de Estoque'
-        OnClick = MovimentacaoRelatorio1Click
-      end
-    end
   end
 end

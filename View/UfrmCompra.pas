@@ -22,7 +22,6 @@ type
     LbValorUnit: TLabel;
     qryProduto: TFDQuery;
     Label7: TLabel;
-    Image1: TImage;
     Label6: TLabel;
     qryPadraoID: TIntegerField;
     qryPadraoDATA: TSQLTimeStampField;
@@ -63,6 +62,7 @@ type
     EIdProduto: TEdit;
     ENomeProduto: TEdit;
     EQuantidade: TNumberBox;
+    imFundo2: TImage;
     procedure BNovoClick(Sender: TObject);
     procedure BProdutoClick(Sender: TObject);
     procedure BEditarClick(Sender: TObject);
@@ -80,6 +80,8 @@ type
     { Private declarations }
     FTipo: String;
     oMovimento: TMovimento;
+    FCampoOrdem: Integer;
+    FOrdemAsc: Boolean;
     procedure procuraProduto();
     procedure apagar();
     procedure salvar();
@@ -218,7 +220,7 @@ procedure TfrmMovimentacao.DBGrid1DrawColumnCell(Sender: TObject;
 var
   lLinha: integer;
 begin
-  if Rect.Top = TStringGrid(DBGrid1).CellRect(0, TStringGrid(DBGrid1).Row).Top then
+ { if Rect.Top = TStringGrid(DBGrid1).CellRect(0, TStringGrid(DBGrid1).Row).Top then
   begin
     DBGrid1.Canvas.FillRect(Rect);
     DBGrid1.Canvas.Font.Color := clWhite;
@@ -229,17 +231,12 @@ begin
       Dbgrid1.Canvas.Font.Color:= clRed;
 
     DBGrid1.DefaultDrawDataCell(Rect, Column.Field, State)
-  end;
-  exit;
-  // obtém o número do registro (linha)
-  lLinha := DBGrid1.DataSource.DataSet.RecNo;
-
-  // verifica se o número da linha é par ou ímpar, aplicando as cores
-  if Odd(lLinha) then
-    DBGrid1.Canvas.Brush.Color := clMenu
+  end; }
+  //exit;
+  if qryPadraoTIPO.AsString='E' then
+      Dbgrid1.Canvas.Font.Color:= clNavy
   else
-    DBGrid1.Canvas.Brush.Color := clMoneyGreen;
-
+      Dbgrid1.Canvas.Font.Color:= clRed;
   // pinta a linha
   DBGrid1.DefaultDrawColumnCell(Rect, DataCol, Column, State);
 end;
@@ -254,12 +251,21 @@ begin
   qryPadrao.sql.add(
       'SELECT A.*, B.descricao FROM MOVIMENTO A LEFT JOIN PRODUTO B ON A.PRODUTO = B.ID  '
     + 'ORDER BY ' + campo); // ESCREVE O SELECT COM O ORDER BY
+
+  if FCampoOrdem = Column.Index then
+    FOrdemasc := not FOrdemAsc
+  else
+    FOrdemAsc := true;
+  FCampoOrdem := Column.Index;
+  if not FOrdemasc then qryPadrao.sql.add(' DESC ');
+
+
   if not qryPadrao.Prepared then
   begin
     qryPadrao.Prepare;
     qryPadrao.Open; // ABRE A QUERY COM A ORDEM ESCOLHIDA.
   End;
-  column.Font.color:=clblue; // COLOCAR A COLUNA NA COR DESEJADA {Busca recursiva
+
 end;
 
 procedure TfrmMovimentacao.EIdProdutoExit(Sender: TObject);
@@ -298,6 +304,11 @@ procedure TfrmMovimentacao.FormCreate(Sender: TObject);
 begin
   inherited;
   oMovimento  := TMovimento.create;
+  FCampoOrdem := -1;
+  imFundo2.align := alclient;
+  imFundo2.Picture.LoadFromFile(ExtractFilePath(Application.ExeName)+ '../Imagens/gradient.bmp');
+  imFundo2.Stretch := true;
+  imFundo2.SendToBack;
 end;
 
 procedure TfrmMovimentacao.LimparTela();

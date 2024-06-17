@@ -44,6 +44,29 @@ implementation
 
 uses uDM;
 
+{Função para criptografar e descriptografar uma string}
+Function Crypt(Opcao : String; Dados : String): String;
+var
+  I : Integer;
+  Key : Word;
+  Res : String;
+const
+  C1    = 10;
+  C2    = 90;
+  Chave = 15;
+begin
+  Key := Chave;
+  for I := 1 to length(Dados) do
+    begin
+      Res := Res + Char(Byte(Dados[I]) xor (Key shr 8));
+      if Opcao = 'CRYPT' then
+        Key := (Byte(Res[I]) + Chave) * C1 + C2;
+      if Opcao = 'DECRYPT' then
+        Key := (Byte(Dados[I]) + Chave) * C1 + C2;
+    end;
+  Result := Res;
+end;
+
 procedure TfrmLogin.BCancelarClick(Sender: TObject);
 begin
   ModalResult := mrCancel;
@@ -106,14 +129,14 @@ function TFrmLogin.loginValido(const usuario, senha : String) : Boolean;
 begin
     with DM.Conexao, FrmLogin.qrypadrao do
     begin
-      if not Connected then //Caso o componente ConLOGIN não esteja conectado ao BD
+      if not Connected then // Caso o componente ConLOGIN não esteja conectado ao BD
         Connected := True;
       Close;
       Sql.Text := 'SELECT COUNT(1) FROM USUARIO ' +
         ' WHERE NOME =  :p1 ' +
         ' AND SENHA = :p2 ';
       ParamByName('p1').AsString := usuario;
-      ParamByName('p2').AsString := senha;
+      ParamByName('p2').AsString := Crypt('CRYPT', senha);
       Open;
       Result := (Fields[0].AsInteger > 0);
    end;

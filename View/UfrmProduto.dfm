@@ -1,11 +1,11 @@
 inherited frmProduto: TfrmProduto
   Align = alClient
   Caption = 'Cadastro de Produto'
-  ClientHeight = 352
+  ClientHeight = 375
+  Font.Height = -12
   StyleElements = [seFont, seClient, seBorder]
-  ExplicitLeft = -53
-  ExplicitHeight = 391
-  TextHeight = 13
+  ExplicitHeight = 414
+  TextHeight = 14
   object Label1: TLabel [0]
     Left = 160
     Top = 88
@@ -23,48 +23,48 @@ inherited frmProduto: TfrmProduto
   object Label2: TLabel [1]
     Left = 160
     Top = 136
-    Width = 102
-    Height = 13
+    Width = 117
+    Height = 14
     Caption = 'Descri'#231#227'o do Produto'
     FocusControl = edtProdutoDescricao
   end
   object Label3: TLabel [2]
     Left = 160
     Top = 184
-    Width = 70
-    Height = 13
+    Width = 80
+    Height = 14
     Caption = 'Valor de Custo'
     FocusControl = edtValorCusto
   end
   object Label4: TLabel [3]
     Left = 280
     Top = 184
-    Width = 72
-    Height = 13
+    Width = 84
+    Height = 14
     Caption = 'Valor de Venda'
     FocusControl = edtValorVenda
   end
   object Label5: TLabel [4]
     Left = 398
     Top = 184
-    Width = 39
-    Height = 13
+    Width = 45
+    Height = 14
     Caption = 'Estoque'
     FocusControl = edtEstoque
   end
   object Label6: TLabel [5]
     Left = 514
     Top = 181
-    Width = 74
-    Height = 13
+    Width = 86
+    Height = 14
     Caption = 'Estoque M'#237'nimo'
     FocusControl = edtEstoqueMinimo
   end
   object Label7: TLabel [6]
     Left = 624
     Top = 184
-    Width = 39
-    Height = 13
+    Width = 44
+    Height = 14
     Caption = 'Unidade'
   end
   object Label8: TLabel [7]
@@ -83,32 +83,32 @@ inherited frmProduto: TfrmProduto
   end
   object Label9: TLabel [8]
     Left = 160
-    Top = 232
-    Width = 61
-    Height = 13
+    Top = 237
+    Width = 67
+    Height = 14
     Caption = 'ID Categoria'
     FocusControl = edtIDCategoria
   end
   object Label10: TLabel [9]
     Left = 280
-    Top = 229
-    Width = 96
-    Height = 13
+    Top = 234
+    Width = 106
+    Height = 14
     Caption = 'Descri'#231#227'o Categoria'
     FocusControl = edtCategoria
   end
   inherited imFundo: TImage
-    Height = 228
-    ExplicitLeft = 88
-    ExplicitTop = 104
+    Height = 251
+    ExplicitLeft = 0
+    ExplicitTop = 68
     ExplicitWidth = 827
-    ExplicitHeight = 228
+    ExplicitHeight = 251
   end
   object BCategoria: TSpeedButton [11]
     Left = 253
-    Top = 250
+    Top = 255
     Width = 23
-    Height = 22
+    Height = 25
     Caption = '...'
     OnClick = BCategoriaClick
   end
@@ -137,9 +137,9 @@ inherited frmProduto: TfrmProduto
     end
   end
   inherited Panel2: TPanel
-    Top = 295
+    Top = 318
     StyleElements = [seFont, seClient, seBorder]
-    ExplicitTop = 256
+    ExplicitTop = 295
     inherited DBNavigator1: TDBNavigator
       Hints.Strings = ()
     end
@@ -148,7 +148,11 @@ inherited frmProduto: TfrmProduto
     Left = 160
     Top = 104
     Width = 67
-    Height = 21
+    Height = 28
+    AutoSize = False
+    BevelOuter = bvRaised
+    BevelKind = bkFlat
+    BevelWidth = 2
     CharCase = ecUpperCase
     DataField = 'ID'
     DataSource = dsPadrao
@@ -158,7 +162,11 @@ inherited frmProduto: TfrmProduto
     Left = 160
     Top = 152
     Width = 519
-    Height = 21
+    Height = 28
+    AutoSize = False
+    BevelOuter = bvRaised
+    BevelKind = bkFlat
+    BevelWidth = 2
     CharCase = ecUpperCase
     DataField = 'DESCRICAO'
     DataSource = dsPadrao
@@ -166,9 +174,13 @@ inherited frmProduto: TfrmProduto
   end
   object edtValorCusto: TDBEdit [16]
     Left = 160
-    Top = 200
+    Top = 203
     Width = 100
-    Height = 21
+    Height = 28
+    AutoSize = False
+    BevelOuter = bvRaised
+    BevelKind = bkFlat
+    BevelWidth = 2
     CharCase = ecUpperCase
     DataField = 'VL_CUSTO'
     DataSource = dsPadrao
@@ -178,7 +190,11 @@ inherited frmProduto: TfrmProduto
     Left = 280
     Top = 200
     Width = 100
-    Height = 21
+    Height = 28
+    AutoSize = False
+    BevelOuter = bvRaised
+    BevelKind = bkFlat
+    BevelWidth = 2
     CharCase = ecUpperCase
     DataField = 'VL_VENDA'
     DataSource = dsPadrao
@@ -188,7 +204,11 @@ inherited frmProduto: TfrmProduto
     Left = 398
     Top = 200
     Width = 99
-    Height = 21
+    Height = 28
+    AutoSize = False
+    BevelOuter = bvRaised
+    BevelKind = bkFlat
+    BevelWidth = 2
     CharCase = ecUpperCase
     DataField = 'ESTOQUE'
     DataSource = dsPadrao
@@ -198,7 +218,11 @@ inherited frmProduto: TfrmProduto
     Left = 514
     Top = 200
     Width = 92
-    Height = 21
+    Height = 28
+    AutoSize = False
+    BevelOuter = bvRaised
+    BevelKind = bkFlat
+    BevelWidth = 2
     CharCase = ecUpperCase
     DataField = 'ESTOQUE_MIN'
     DataSource = dsPadrao
@@ -208,7 +232,11 @@ inherited frmProduto: TfrmProduto
     Left = 246
     Top = 104
     Width = 134
-    Height = 21
+    Height = 28
+    AutoSize = False
+    BevelOuter = bvRaised
+    BevelKind = bkFlat
+    BevelWidth = 2
     CharCase = ecUpperCase
     DataField = 'CADASTRO'
     DataSource = dsPadrao
@@ -217,9 +245,13 @@ inherited frmProduto: TfrmProduto
   end
   object edtIDCategoria: TDBEdit [21]
     Left = 158
-    Top = 251
+    Top = 253
     Width = 89
-    Height = 21
+    Height = 28
+    AutoSize = False
+    BevelOuter = bvRaised
+    BevelKind = bkFlat
+    BevelWidth = 2
     CharCase = ecUpperCase
     Color = clInfoBk
     DataField = 'ID_CATEGORIA'
@@ -228,9 +260,13 @@ inherited frmProduto: TfrmProduto
   end
   object edtCategoria: TDBEdit [22]
     Left = 282
-    Top = 248
+    Top = 254
     Width = 415
-    Height = 21
+    Height = 28
+    AutoSize = False
+    BevelOuter = bvRaised
+    BevelKind = bkFlat
+    BevelWidth = 2
     CharCase = ecUpperCase
     Color = clInfoBk
     DataField = 'NOME'
@@ -242,8 +278,11 @@ inherited frmProduto: TfrmProduto
     Left = 624
     Top = 203
     Width = 55
-    Height = 21
+    Height = 22
     Style = csDropDownList
+    BevelOuter = bvRaised
+    BevelKind = bkFlat
+    BevelWidth = 2
     DataField = 'UNIDADE'
     DataSource = dsPadrao
     Items.Strings = (

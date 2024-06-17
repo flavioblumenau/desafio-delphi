@@ -54,7 +54,7 @@ object frmLogin: TfrmLogin
     Width = 367
     Height = 67
     Align = alTop
-    Color = 13298927
+    Color = clSkyBlue
     ParentBackground = False
     TabOrder = 0
     object BLogar: TSpeedButton
@@ -292,7 +292,7 @@ object frmLogin: TfrmLogin
     Width = 367
     Height = 57
     Align = alBottom
-    Color = 13298927
+    Color = 16112578
     ParentBackground = False
     TabOrder = 1
   end
@@ -300,8 +300,11 @@ object frmLogin: TfrmLogin
     Left = 48
     Top = 126
     Width = 266
-    Height = 31
+    Height = 35
     AutoSize = False
+    BevelKind = bkFlat
+    BevelOuter = bvRaised
+    BevelWidth = 2
     CharCase = ecUpperCase
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -316,7 +319,11 @@ object frmLogin: TfrmLogin
     Left = 48
     Top = 196
     Width = 266
-    Height = 33
+    Height = 37
+    AutoSize = False
+    BevelKind = bkFlat
+    BevelOuter = bvRaised
+    BevelWidth = 2
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -19

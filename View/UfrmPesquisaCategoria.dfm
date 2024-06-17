@@ -1,7 +1,6 @@
 inherited frmPesquisaCategoria: TfrmPesquisaCategoria
   Caption = 'Pesquisa de Categorias de Produtos'
   StyleElements = [seFont, seClient, seBorder]
-  ExplicitLeft = -179
   TextHeight = 13
   inherited Panel1: TPanel
     StyleElements = [seFont, seClient, seBorder]
@@ -9,12 +8,6 @@ inherited frmPesquisaCategoria: TfrmPesquisaCategoria
       StyleElements = [seFont, seClient, seBorder]
     end
     inherited lblNome: TLabel
-      StyleElements = [seFont, seClient, seBorder]
-    end
-    inherited lblInicio: TLabel
-      StyleElements = [seFont, seClient, seBorder]
-    end
-    inherited lblFim: TLabel
       StyleElements = [seFont, seClient, seBorder]
     end
     inherited cbChavePesquisa: TComboBox
@@ -28,12 +21,6 @@ inherited frmPesquisaCategoria: TfrmPesquisaCategoria
         'TODOS')
     end
     inherited edtNome: TEdit
-      StyleElements = [seFont, seClient, seBorder]
-    end
-    inherited edtInicio: TMaskEdit
-      StyleElements = [seFont, seClient, seBorder]
-    end
-    inherited edtFim: TMaskEdit
       StyleElements = [seFont, seClient, seBorder]
     end
   end
@@ -59,7 +46,6 @@ inherited frmPesquisaCategoria: TfrmPesquisaCategoria
   end
   inherited Panel2: TPanel
     StyleElements = [seFont, seClient, seBorder]
-    ExplicitTop = 286
   end
   inherited qryPesquisaPadrao: TFDQuery
     SQL.Strings = (
