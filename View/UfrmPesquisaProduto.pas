@@ -58,6 +58,8 @@ procedure TfrmPesquisaProduto.btnPesquisarClick(Sender: TObject);
 begin
   inherited;
 
+
+
   qryPesquisaPadrao.SQL.Add('SELECT A.ID, A.DESCRICAO, A.VL_CUSTO, A.VL_VENDA, '
   + 'A.ESTOQUE, A.ESTOQUE_MIN, A.UNIDADE, A.CADASTRO, A.ID_CATEGORIA, B.NOME FROM PRODUTO A '
   + 'LEFT JOIN CATEGORIAS B ON A.ID_CATEGORIA = B.ID ');
@@ -88,7 +90,11 @@ begin
     end;
   end;
 
-  qryPesquisaPadrao.Open;
+  try
+    qryPesquisaPadrao.Open;
+  except
+
+  end;
 
   if qryPesquisaPadrao.IsEmpty then
    begin

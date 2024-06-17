@@ -74,6 +74,7 @@ begin
   qryPesquisaPadrao.Close;
   qryPesquisaPadrao.SQL.Clear;
   qryPesquisaPadrao.Params.Clear;
+  if edtNome.Text = ''  then  edtNome.Text := ' ';
 end;
 
 procedure TfrmPesquisaPadrao.BSelecionarClick(Sender: TObject);
