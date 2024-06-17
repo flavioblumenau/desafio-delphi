@@ -24,7 +24,7 @@ object frmPrincipal: TfrmPrincipal
     Width = 1184
     Height = 90
     Align = alTop
-    Color = 13298927
+    Color = clSkyBlue
     ParentBackground = False
     TabOrder = 0
     object BProdutos: TSpeedButton
@@ -1621,6 +1621,7 @@ object frmPrincipal: TfrmPrincipal
         FF00FFFFFF00}
       Layout = blGlyphTop
       ParentFont = False
+      OnClick = BVendasClick
     end
     object BSair: TSpeedButton
       Left = 426

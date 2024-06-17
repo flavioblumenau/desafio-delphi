@@ -26,6 +26,7 @@ type
     procedure cbChavePesquisaChange(Sender: TObject);
     procedure btnTransferirClick(Sender: TObject);
     procedure BSelecionarClick(Sender: TObject);
+    procedure btnImprimirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -44,6 +45,13 @@ begin
   inherited;
   Codigo := qryPesquisaPadraoID.AsInteger;
   ModalResult := mrOk;
+end;
+
+procedure TfrmPesquisaProduto.btnImprimirClick(Sender: TObject);
+begin
+  NomeRelatorio := 'relEstoque.fr3';
+  inherited;
+
 end;
 
 procedure TfrmPesquisaProduto.btnPesquisarClick(Sender: TObject);

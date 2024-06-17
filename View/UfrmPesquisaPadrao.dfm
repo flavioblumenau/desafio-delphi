@@ -306,6 +306,7 @@ object frmPesquisaPadrao: TfrmPesquisaPadrao
         FF35D8FF15D2FF05CFFF05CFFF15D2FF35D8FF65E1FFA7EEFFF2FCFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
       ParentFont = False
+      Visible = False
       OnClick = btnImprimirClick
     end
     object BSelecionar: TSpeedButton

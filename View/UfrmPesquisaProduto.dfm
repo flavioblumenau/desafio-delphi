@@ -2,7 +2,6 @@ inherited frmPesquisaProduto: TfrmPesquisaProduto
   HelpType = htKeyword
   Caption = 'Pesquisa de Produtos'
   ClientHeight = 426
-  WindowState = wsNormal
   StyleElements = [seFont, seClient, seBorder]
   ExplicitHeight = 465
   TextHeight = 13
@@ -33,6 +32,7 @@ inherited frmPesquisaProduto: TfrmPesquisaProduto
     inherited btnImprimir: TSpeedButton
       Left = 732
       Top = 10
+      Visible = True
       ExplicitLeft = 732
       ExplicitTop = 10
     end

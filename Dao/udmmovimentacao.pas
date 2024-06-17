@@ -62,6 +62,17 @@ begin
       ParamByName('pvalor').AsFloat := oMovimento.ValorUnit;
       ParamByName('pvalor_total').AsFloat := oMovimento.ValorTotal;
       ExecSQL;
+
+      Sql.Clear;
+      if  oMovimento.Tipo='E' then
+        Sql.Add('update produto set estoque = estoque + :quantidade  where id = :id')
+      else
+        Sql.Add('update produto set estoque = estoque - :quantidade  where id = :id');
+      ParamByName('quantidade').AsInteger := oMovimento.quantidade;
+      ParamByName('id').AsInteger := oMovimento.Produto;
+      ExecSQL;
+
+
       Result := true;
     end;
     oTelaUtl.salvaTransacao;

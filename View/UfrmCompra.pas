@@ -9,7 +9,8 @@ uses
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   Vcl.Grids, Vcl.DBGrids, Vcl.DBCtrls, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
-  Vcl.Mask, uDM, Vcl.Imaging.jpeg;
+  Vcl.Mask, uDM, Vcl.Imaging.jpeg, frxSmartMemo, frxClass, frCoreClasses,
+  frxDBSet;
 
 type
   TfrmMovimentacao = class(TfrmPadraoMovimento)
@@ -47,6 +48,20 @@ type
     qryProdutoUNIDADE: TStringField;
     qryProdutoCADASTRO: TDateField;
     qryProdutoID_CATEGORIA: TIntegerField;
+    Bevel1: TBevel;
+    frxDB: TfrxDBDataset;
+    frxReport: TfrxReport;
+    dsRelatorio: TDataSource;
+    QryRelatorio: TFDQuery;
+    QryRelatorioID: TFDAutoIncField;
+    QryRelatorioDESCRICAO: TStringField;
+    QryRelatorioVL_CUSTO: TFMTBCDField;
+    QryRelatorioVL_VENDA: TFMTBCDField;
+    QryRelatorioESTOQUE: TFMTBCDField;
+    QryRelatorioESTOQUE_MIN: TFMTBCDField;
+    QryRelatorioUNIDADE: TStringField;
+    QryRelatorioCADASTRO: TDateField;
+    QryRelatorioID_CATEGORIA: TIntegerField;
     procedure edtIDProdutoExit(Sender: TObject);
     procedure BNovoClick(Sender: TObject);
     procedure BProdutoClick(Sender: TObject);
@@ -58,6 +73,7 @@ type
     procedure qryPadraoAfterScroll(DataSet: TDataSet);
     procedure FormCreate(Sender: TObject);
     procedure DBGrid1TitleClick(Column: TColumn);
+    procedure btnImprimirClick(Sender: TObject);
   private
     { Private declarations }
     FTipo: String;
@@ -160,6 +176,26 @@ begin
   procuraProduto();
 end;
 
+
+procedure TfrmMovimentacao.btnImprimirClick(Sender: TObject);
+var
+  Caminho : String;
+begin
+  QryRelatorio.Open();
+  Caminho := ExtractFilePath(Application.ExeName) + 'relEstoque.fr3';
+
+  if frxReport.LoadFromFile(Caminho) then
+   begin
+    frxReport.Clear;
+    frxReport.LoadFromFile(Caminho);
+    frxReport.PrepareReport(True);
+    frxReport.ShowPreparedReport;
+   end
+  else
+   MessageDlg('Relatório não encontrado!' + #13 +
+   'Caminho: ' + QuotedStr(Caminho), mtError, [mbOK], 0);
+
+end;
 
 procedure TfrmMovimentacao.DBGrid1TitleClick(Column: TColumn);
 var

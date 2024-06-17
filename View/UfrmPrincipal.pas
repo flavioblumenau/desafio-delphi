@@ -40,6 +40,7 @@ type
     procedure Produtos1Click(Sender: TObject);
     procedure BComprasClick(Sender: TObject);
     procedure FormPaint(Sender: TObject);
+    procedure BVendasClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -80,6 +81,11 @@ end;
 procedure TfrmPrincipal.Button1Click(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TfrmPrincipal.BVendasClick(Sender: TObject);
+begin
+  AbreTelaVenda;
 end;
 
 procedure TfrmPrincipal.FormCreate(Sender: TObject);
