@@ -79,12 +79,12 @@ begin
     Id := FieldByName('Id').AsInteger;
     if id > 0 then
     begin
-      Produto    :=   FieldByName('Produto').AsInteger;
-      Tipo       :=   FieldByName('Tipo').AsString;
-      ValorUnit  :=   FieldByName('ValorUnit').AsFloat;
-      ValorTotal :=   FieldByName('ValorTotal').AsFloat;
-      Quantidade :=   FieldByName('Quantidade').AsInteger;
-      AData       :=   FieldByName('Data').AsDateTime;
+      Produto    := FieldByName('Produto').AsInteger;
+      Tipo       := FieldByName('Tipo').AsString;
+      ValorUnit  := FieldByName('ValorUnit').AsFloat;
+      ValorTotal := FieldByName('ValorTotal').AsFloat;
+      Quantidade := FieldByName('Quantidade').AsInteger;
+      AData      := FieldByName('Data').AsDateTime;
     end;
   end;
 end;
@@ -95,6 +95,7 @@ begin
   begin
     Sql.clear;
     Sql.Add('Select * from movimento where id = :id');
+    parambyname('id').AsInteger := id;
     open;
   end;
 end;

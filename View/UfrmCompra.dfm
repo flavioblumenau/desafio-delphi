@@ -10,6 +10,9 @@ inherited frmMovimentacao: TfrmMovimentacao
   end
   inherited Panel1: TPanel
     StyleElements = [seFont, seClient, seBorder]
+    inherited BPesquisar: TSpeedButton
+      Visible = False
+    end
   end
   inherited Panel3: TPanel
     Height = 159
@@ -3345,10 +3348,12 @@ inherited frmMovimentacao: TfrmMovimentacao
   inherited DBGrid1: TDBGrid
     Top = 226
     Height = 199
+    DataSource = dsPadrao
     Font.Height = -16
     ParentFont = False
     TitleFont.Height = -16
     TitleFont.Style = [fsBold]
+    OnTitleClick = DBGrid1TitleClick
     Columns = <
       item
         Expanded = False
@@ -3358,6 +3363,12 @@ inherited frmMovimentacao: TfrmMovimentacao
       item
         Expanded = False
         FieldName = 'TIPO'
+        Width = 64
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'DATA'
         Visible = True
       end
       item
@@ -3387,7 +3398,6 @@ inherited frmMovimentacao: TfrmMovimentacao
       item
         Expanded = False
         FieldName = 'VALOR_TOTAL'
-        Width = 125
         Visible = True
       end>
   end
@@ -3397,6 +3407,12 @@ inherited frmMovimentacao: TfrmMovimentacao
     inherited DBNavigator1: TDBNavigator
       Hints.Strings = ()
     end
+    inherited btnImprimir: TBitBtn
+      Left = 11
+      Width = 202
+      ExplicitLeft = 11
+      ExplicitWidth = 202
+    end
   end
   inherited qryPadrao: TFDQuery
     AfterScroll = qryPadraoAfterScroll
@@ -3405,9 +3421,11 @@ inherited frmMovimentacao: TfrmMovimentacao
     UpdateOptions.AutoIncFields = 'ID'
     SQL.Strings = (
       'SELECT'
-      '*'
+      'A.*, '
+      'B.descricao'
       'FROM '
-      'MOVIMENTO '
+      'MOVIMENTO A'
+      'LEFT JOIN PRODUTO B ON A.PRODUTO = B.ID '
       'ORDER BY ID DESC')
     Left = 176
     Top = 302

@@ -57,6 +57,7 @@ type
     procedure BCancelarClick(Sender: TObject);
     procedure qryPadraoAfterScroll(DataSet: TDataSet);
     procedure FormCreate(Sender: TObject);
+    procedure DBGrid1TitleClick(Column: TColumn);
   private
     { Private declarations }
     FTipo: String;
@@ -87,7 +88,6 @@ end;
 
 procedure TfrmMovimentacao.BDeletarClick(Sender: TObject);
 begin
-  inherited;
   apagar;
 end;
 
@@ -160,6 +160,24 @@ begin
   procuraProduto();
 end;
 
+
+procedure TfrmMovimentacao.DBGrid1TitleClick(Column: TColumn);
+var
+  campo:string;
+begin
+  campo := column.fieldname; // CAMPO RECEBE O NOME DA COLUNA CLICADA,
+  application.processmessages; // para considerar algo que aconteça no dbgrid durante a entrada nesta procedure
+  qryPadrao.sql.clear; // LIMPA A QUERY
+  qryPadrao.sql.add(
+      'SELECT A.*, B.descricao FROM MOVIMENTO A LEFT JOIN PRODUTO B ON A.PRODUTO = B.ID  '
+    + 'ORDER BY ' + campo); // ESCREVE O SELECT COM O ORDER BY
+  if not qryPadrao.Prepared then
+  begin
+    qryPadrao.Prepare;
+    qryPadrao.Open; // ABRE A QUERY COM A ORDEM ESCOLHIDA.
+  End;
+  column.Font.color:=clblue; // COLOCAR A COLUNA NA COR DESEJADA {Busca recursiva
+end;
 
 procedure TfrmMovimentacao.edtIDProdutoExit(Sender: TObject);
 begin
